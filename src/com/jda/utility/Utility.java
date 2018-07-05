@@ -102,4 +102,63 @@ public void FindWinLossOFGambler(double AvailableCash,double Goal,double NumberO
 	System.out.println("precentage of lose"+(lose/NumberOfChances*100));
 
 }
+public static double FindPercent(int number)
+
+{
+
+		double HeadResult,TailResult;
+
+		int Head=0,Tail=0;
+
+		Random random = new Random();
+
+		double arr[]=new double[number];
+
+		for(int i=0;i<number;i++)
+
+		{
+
+			arr[i]=random.nextDouble();
+
+			//System.out.println("arr="+arr[i]);
+
+
+
+		}
+
+		
+
+		for(int i=0;i<number;i++)
+
+		{
+
+			if(arr[i] < 0.5)
+
+				Tail=Tail+1;
+
+			else
+
+				Head=Head+1;
+
+		}
+
+		
+
+		//System.out.println(Head);
+
+		//System.out.println(Tail);
+
+			
+
+		double d1=number;
+
+		HeadResult=Head/d1;
+
+		TailResult=Tail/d1;
+
+				System.out.println("Head Percent : "+HeadResult*100);
+
+		return TailResult;
+
+}
 }
