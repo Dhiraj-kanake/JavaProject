@@ -4,7 +4,7 @@ public class PowerOfTwo {
 public static void main(String args[])
 {
 	Utility utility = new Utility();
-	int Number = utility.InputInteger();
+	int Number = Integer.parseInt( args[0]);
 	utility.PowerOfN(Number);
 }
 }

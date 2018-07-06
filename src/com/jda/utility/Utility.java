@@ -16,11 +16,19 @@ public class Utility {
 	{
 		return scanner.nextInt();
 	}
-public  String StringReplace (String UserName,String Template)
+	
+	
+	//  To take String as an input
+	
+public  String StringReplace (String UserName,String Template)  
 {
 	String result = Template.replace("<<UserName>>", UserName);
 	return result;
 }
+
+
+//  To calculate prime factors of number 
+
 public void PrimeFactors(int Number)
 {
 	int dividend=Number;
@@ -31,11 +39,14 @@ public void PrimeFactors(int Number)
 		{
 			System.out.println(i);
 			dividend=dividend/i;
-			i=2;
+			i=1;
 		}
 	}
 	System.out.println(dividend);
 }
+
+//To find Harmonic Mean
+
 public double FindHarmonicMean(int Number)
 {
 	double result = 0;
@@ -46,6 +57,11 @@ public double FindHarmonicMean(int Number)
 	}
 	return result;
 }
+
+
+//To find  power of N
+
+
 public void PowerOfN(int Number)
 {
 	for(int i=0 ;i<Number;i++)
@@ -54,65 +70,74 @@ public void PowerOfN(int Number)
 		System.out.println( Math.pow(2, i));
 	}
 }
+
+// To find leap year
+
 public String FindLeapYear(int Year)
 {
-	if(Year%4 ==0 || Year%100 ==0)
+	if((Year%400==0)||(Year%4==0 && Year%100!=0))
 		return "Yes";
 	else
 		return "No";
 }
-public void FindWinLossOFGambler(double AvailableCash,double Goal,double NumberOfChances)
+
+							/*  Gambler win or lose  */
+
+public void FindWinLossOFGambler(double InitialAvailableCash,double Goal,double NumberOfChances)
 {
 	Random r = new Random();
-	int Low = 1;
+	int Low = 1;        
 	int High = 3;
 	double win=0,lose=0;
+	double AvailableCash = InitialAvailableCash;     // assigning 
 	for(int i=0;i<NumberOfChances;i++)
 	{
-	int result = r.nextInt(High-Low) + Low;
 	//System.out.println("Random number is"+result);
-	if(result==1)  //result=1 means gambler won
+AvailableCash = InitialAvailableCash;
+		while(AvailableCash != Goal || AvailableCash !=0)
+	{
+			//System.out.println("1");
+		int result = r.nextInt(High-Low) + Low;   //TO store  random number
+	if(result==1)  //result=1 means gambler win
 	{
 		AvailableCash=AvailableCash+1;
-		win=win+1;
-		if(AvailableCash>=Goal)
-		{
-			//System.out.println("Gambler reached the Goal");
-			break;
-		}
-		
 	}
 	else
 	{
 		AvailableCash=AvailableCash-1;
-		lose=lose+1;
-		if(AvailableCash==0)
-		{
-			//System.out.println("Gambler lost all money");
-			break;
-		}
+		
+	}
+	if(AvailableCash==Goal || AvailableCash ==0)
+	{
+		if(AvailableCash == Goal)
+			win=win+1;
+		else
+			lose=lose+1;
+
+		break;
+	}
 	}
 	}
 	
-	double winp = (win/NumberOfChances*100);
+	double winp = (win/(win+lose)*100);
 	System.out.println("Number of  wins : "+(int) win);
 	System.out.println("Number of  lose : "+(int) lose);
 
-	System.out.println("precentage of win"+winp);
-	System.out.println("precentage of lose"+(lose/NumberOfChances*100));
+	System.out.println("precentage of win  : "+winp);
+	System.out.println("precentage of lose : "+(lose/(win+lose)*100));
 
 }
-public static double FindPercent(int number)
+public static double FindPercent(int number)    // Flip coin method to find percentage
 
 {
 
-		double HeadResult,TailResult;
+		double HeadResult,TailResult;         // to store ratio of Head and  Tail
 
-		int Head=0,Tail=0;
+		int Head=0,Tail=0;         // variable to store number of heads and tails
 
-		Random random = new Random();
+		Random random = new Random();         //method to generate random number
 
-		double arr[]=new double[number];
+		double arr[]=new double[number];        //array to store random numbers
 
 		for(int i=0;i<number;i++)
 

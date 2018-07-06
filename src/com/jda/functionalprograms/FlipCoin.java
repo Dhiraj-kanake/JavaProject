@@ -1,26 +1,26 @@
 /*Problem statement : Flip coin and print percentage of Head vs Tail
- * auther  : Dhiraj Kanake
- * version : 
+ * auther  : Dhiraj Kanak
  * Date :  5-jul-2018
  * */
-package com.jda.functionalprograms;
-import com.jda.utility.Utility;
+package com.jda.functionalprograms;       //package name
+import com.jda.utility.Utility;                       // package which contains all the methods
 
 
 
-public class FlipCoin {
+public class FlipCoin {													//main class
 
 		public static void main(String args[])
 
 		{
 
-			Utility utility = new Utility();
+			Utility utility = new Utility();               //creating object of utility
 
-			int number = utility.InputInteger();
+			System.out.println("Enter Number of Times to Flip Coin : ");
+			int Number_Of_times_To_Flip_Coin = utility.InputInteger();           //calling InputInteger to take input number
 
-			double PercentageOfFlipCoin = Utility.FindPercent(number);
+			double PercentageOfFlipCoin = Utility.FindPercent(Number_Of_times_To_Flip_Coin);  //calling method to calculate percent
 
-			System.out.println("Tail percent"+PercentageOfFlipCoin*100);
+			System.out.println("Tail percent : "+PercentageOfFlipCoin*100);    //
 
 			
 
