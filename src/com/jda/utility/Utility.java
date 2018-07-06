@@ -199,19 +199,25 @@ public int[] enterArray(int NumberOfCoupons)
 	return Coupons;
 }
 
-public void randomCouponNumbers(int Coupons[])
+public void randomCouponNumbers(int Coupons[],int NumberOfCoupons)
 {
-	List<Integer> GivenCouponList = new ArrayList();
+	ArrayList<Integer> GivenCouponList = new ArrayList<>();
+	for(int i=0;i<NumberOfCoupons;i++)
+	{
+		GivenCouponList.add(Coupons[i]);
+	}
 	int MaxCouponNumber=Collections.max(GivenCouponList);           //highest coupon number
 	int MinCouponNumber= Collections.min(GivenCouponList);
 	Random RandomNumber = new Random();
 	int Low =(int) MinCouponNumber;
-	int High= (int) MaxCouponNumber;
-	Set<Integer> TotalRandomNumber = new HashSet();
+	int High= (int) MaxCouponNumber+1;
+	Set<Integer> TotalRandomNumber = new HashSet<Integer>();
 	int NextRandomNumber;
 	while(true)
 	{
 		NextRandomNumber = RandomNumber.nextInt(High-Low)+Low;
+		System.out.println("size  = "+GivenCouponList.size());
+		System.out.println("random number :"+NextRandomNumber);
 		if(GivenCouponList.size()==0)
 			break;
 		TotalRandomNumber.add(NextRandomNumber);
@@ -222,4 +228,41 @@ public void randomCouponNumbers(int Coupons[])
 	System.out.println("total random number : "+TotalRandomNumber.size());
 	
 }
+
+public void generateRandomCouponNumbers(int NumberOfCoupons)
+{
+	ArrayList<Integer> GivenCouponList = new ArrayList<>();
+	for(int i=1;i<=NumberOfCoupons;i++)
+	{
+		GivenCouponList.add(i);
+	}
+	int MaxCouponNumber=Collections.max(GivenCouponList);           //highest coupon number
+	int MinCouponNumber= Collections.min(GivenCouponList);
+	Random RandomNumber = new Random();
+	int Low =(int) MinCouponNumber;
+	int High= (int) MaxCouponNumber+1;
+	List<Integer> TotalRandomNumber = new ArrayList<Integer>();
+	int NextRandomNumber;
+	int array[]=new int[NumberOfCoupons];
+	int count=0;
+	while(true)
+	{
+		if(GivenCouponList.size()==0)
+			break;
+		NextRandomNumber = RandomNumber.nextInt(High-Low)+Low;
+		//System.out.println("size  = "+GivenCouponList.size());
+		//System.out.println("random number :"+NextRandomNumber);
+		
+		TotalRandomNumber.add(NextRandomNumber);
+		if(GivenCouponList.contains(NextRandomNumber))         //if given list contains random number then add it to new list
+		{
+			array[count++]=NextRandomNumber;
+			GivenCouponList.remove(new Integer(NextRandomNumber));     //removing that element from the list
+		}
+	}
+	System.out.println("total random number : "+TotalRandomNumber.size());
+	for(int i=0;i<NumberOfCoupons;i++)
+	System.out.println(array[i]);
+}
+
 }
