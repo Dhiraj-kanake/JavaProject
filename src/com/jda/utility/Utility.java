@@ -1,6 +1,12 @@
 package com.jda.utility;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.HashSet;
 public class Utility {
 	Scanner scanner;
 	public Utility()
@@ -25,7 +31,6 @@ public  String StringReplace (String UserName,String Template)
 	String result = Template.replace("<<UserName>>", UserName);
 	return result;
 }
-
 
 //  To calculate prime factors of number 
 
@@ -185,5 +190,36 @@ public static double FindPercent(int number)    // Flip coin method to find perc
 
 		return TailResult;
 
+}
+public int[] enterArray(int NumberOfCoupons)
+{
+	int Coupons[] = new int[NumberOfCoupons]; 
+	for(int i=0;i<NumberOfCoupons;i++)
+		Coupons[i]=scanner.nextInt();
+	return Coupons;
+}
+
+public void randomCouponNumbers(int Coupons[])
+{
+	List<Integer> GivenCouponList = new ArrayList();
+	int MaxCouponNumber=Collections.max(GivenCouponList);           //highest coupon number
+	int MinCouponNumber= Collections.min(GivenCouponList);
+	Random RandomNumber = new Random();
+	int Low =(int) MinCouponNumber;
+	int High= (int) MaxCouponNumber;
+	Set<Integer> TotalRandomNumber = new HashSet();
+	int NextRandomNumber;
+	while(true)
+	{
+		NextRandomNumber = RandomNumber.nextInt(High-Low)+Low;
+		if(GivenCouponList.size()==0)
+			break;
+		TotalRandomNumber.add(NextRandomNumber);
+		if(GivenCouponList.contains(NextRandomNumber))         //if given list contains random number then add it to new list
+			GivenCouponList.remove(new Integer(NextRandomNumber));     //removing that element from the list
+			
+	}
+	System.out.println("total random number : "+TotalRandomNumber.size());
+	
 }
 }
