@@ -3,6 +3,7 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.Arrays;
 import java.util.Collections;
+import java.io.PrintWriter;
 import java.util.Random;
 import java.util.List;
 import java.util.ArrayList;
@@ -264,5 +265,71 @@ public void generateRandomCouponNumbers(int NumberOfCoupons)
 	for(int i=0;i<NumberOfCoupons;i++)
 	System.out.println(array[i]);
 }
+public String InputString()
+{
+	String s = scanner.next();
+	//char c= s.charAt(0);
+	return s;
+}
+public void printWriterMethod(String TwoDArray[][], int NumberOfRows,int NumberOfColumns)
+{
+	PrintWriter writer = new PrintWriter(System.out);
+	for(int RowNumber=0;RowNumber<NumberOfRows;RowNumber++)
+	{
+		for(int ColumnNumber = 0;ColumnNumber<NumberOfColumns;ColumnNumber++)
+		{
+			//if(Character.isDigit(TwoDArray[RowNumber][ColumnNumber].charAt(0)))
+			writer.print( TwoDArray[RowNumber][ColumnNumber]);
+			//else
+			//	writer.print(TwoDArray[RowNumber][ColumnNumber]);
+			writer.write("  ");
 
+		}
+		writer.write("\n");
+		
+	}
+	writer.flush();
+	writer.close();
+}
+public void findTripletSum(int Array[])
+{
+	boolean flag=false;
+	for(int i=0;i<Array.length-1;i++)
+	{
+		List<Integer> ArrayOfInteger = new ArrayList<Integer>();
+		for(int j=i+1;j<Array.length;j++)
+		{
+			int x = -(Array[i] + Array[j]);
+			if(ArrayOfInteger.contains(x))
+			{
+				System.out.println(x+" "+Array[i]+" "+Array[j]);
+				flag=true;
+			}
+			else
+				ArrayOfInteger.add(Array[j]);
+		}
+		
+	}
+	if(flag==false)
+		System.out.println("triplets are not available");
+}
+public void euclideanDistance(int x,int y)
+{
+	System.out.println("Euclidean Distance = " + Math.pow((x*x + y*y),0.5));
+}
+public double findDelta(int a,int b,int c)
+{
+	double result = b*b - 4*a*c;
+	//System.out.println("result"+result);
+	return result;
+}
+public void findRoot(double Delta,int a,int b)
+{
+	double sqrt=Math.pow(Delta, 1/2);
+			double root_1= (-b+sqrt)/2*a;
+			double root_2=(-b-sqrt)/2*a;
+	System.out.println("Root_1 : "+root_1);
+	System.out.println("Root_2 : "+root_2);
+
+}
 }
