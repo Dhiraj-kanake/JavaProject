@@ -222,4 +222,22 @@ public void randomCouponNumbers(int Coupons[])
 	System.out.println("total random number : "+TotalRandomNumber.size());
 	
 }
+public char[] formatString(String string)
+{
+	string= string.replaceAll("\\s", "");
+	//System.out.println("after replace:"+string);
+	string = string.toLowerCase();
+	//System.out.println("after lowercase:"+string);
+
+	char string1[] =  string.toCharArray();
+//	System.out.println("after to char array:");
+///for(int i=0;i<string1.length;i++)
+//	System.out.print(+string1[i]);
+
+			Arrays.sort(string1);
+		//	System.out.println("after sort");
+			//for(int i=0;i<string1.length;i++)
+			//	System.out.print(+string1[i]);
+	return string1;
+}
 }
