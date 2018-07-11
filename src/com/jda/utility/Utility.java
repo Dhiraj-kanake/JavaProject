@@ -1,6 +1,9 @@
 package com.jda.utility;
 import java.util.Scanner;
 import java.util.Set;
+
+import javax.swing.text.html.HTMLDocument.Iterator;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
@@ -240,4 +243,98 @@ public char[] formatString(String string)
 			//	System.out.print(+string1[i]);
 	return string1;
 }
+public ArrayList<Integer> findRangeOfPrimeNumbers(int rangeLow,int rangeHigh)
+{
+	boolean flag=false;
+	ArrayList<Integer> primeNumberList = new ArrayList<>();
+		for(int i=rangeLow;i<=rangeHigh;i++)  //number to check whether it is prime or not
+		{
+			flag = false;
+			for(int j=2;j<=i/2;j++)   //trying to divide that number with j==2 to j==number/2
+			{
+				if(i%j==0)
+					flag=true;
+			}
+			if(flag ==false && i>=2)
+				primeNumberList.add(i);
+		}
+		//System.out.println(primeNumberList);
+		return (primeNumberList);
 }
+public ArrayList<Integer> findReverseOfNumbers(ArrayList<Integer> ListOfPrimeNumbers )
+{
+	ArrayList<Integer> ReverseList = new ArrayList<>();
+	for(Integer number : ListOfPrimeNumbers)
+	{
+		int x,a=0;
+		while(number>0)    //logic to swap numbers
+		{
+			x=number%10;
+			a=a*10+x;
+			number=number/10;
+		}
+		ReverseList.add(a);
+	}
+	return ReverseList;
+}
+public ArrayList<String> findAnagram(ArrayList<Integer> ListOfPrimeNumbers)
+{
+	ArrayList<String> TempList = new ArrayList<>();
+	for(int i=0;i<ListOfPrimeNumbers.size();i++)          //converting one element into array
+	{
+		int Number = ListOfPrimeNumbers.get(i);        //getting each element
+		int arr[]=new int[Integer.toString(Number).length()];     //getting array length
+		int index=0;             // index of array to store each element
+		while(Number>0)
+		{
+			arr[index++]=Number%10;
+			Number=Number/10;
+		}
+		//System.out.print("before"+Arrays.toString(arr));
+		Arrays.sort(arr);
+		//System.out.print(Arrays.toString(arr));
+	/*	int ArrLength=arr.length;
+		int Element=0;
+		for(int ArrIndex=0;ArrIndex<ArrLength;ArrIndex++)
+		{
+			Element=Element * 10 +arr[ArrIndex];
+		}
+		TempList.add(Element);
+		*/
+		TempList.add(Arrays.toString(arr));
+	}
+	for(int IndexOfElementToCheck=0;IndexOfElementToCheck<TempList.size()-1;IndexOfElementToCheck++)
+	{
+		Set<Integer> IndexOfDuplicateElements = new HashSet<>();
+		IndexOfDuplicateElements.add(IndexOfElementToCheck);
+		boolean flag=false;
+		for(int NextIndex=IndexOfElementToCheck+1;NextIndex<TempList.size();NextIndex++)
+		{
+			if(TempList.get(NextIndex).equals(TempList.get(IndexOfElementToCheck)))
+			{
+				flag=true;
+				IndexOfDuplicateElements.add(NextIndex);
+			}
+		}
+		if(flag==true)
+		{
+			for(Integer Index : IndexOfDuplicateElements)
+			{
+				System.out.print(" "+ListOfPrimeNumbers.get(Index));
+			}
+			System.out.println("     ");
+		}
+		
+	}
+	return TempList;
+}
+}
+
+
+
+
+
+
+
+
+
