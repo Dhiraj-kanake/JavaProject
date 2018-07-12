@@ -19,7 +19,7 @@ public class Utility {
 	}
 	public String ScanString()
 	{
-	 return scanner.next();
+	 return scanner.nextLine();
 	}
 	public int InputInteger()
 	{
