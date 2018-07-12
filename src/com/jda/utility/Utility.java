@@ -342,4 +342,29 @@ public double endStopwatch()
 	double EndTime = System.currentTimeMillis();
 	return EndTime;
 }
+public void iterativeMethodForPermutaion(String string)
+{
+	String ArrayOfString[] = string.split("");
+	int lengthOfString = string.length();
+	for(int i=0;i<lengthOfString;i++)
+	{
+		
+	}
 }
+public double findWindChill(double args[])
+{
+	double t=args[0];
+	double v=args[1];
+	double windchill = 35.74 +0.6215 * t + (0.4275 * t - 35.75) * Math.pow(v, 0.16);	
+	return windchill;
+}
+}
+
+
+
+
+
+
+
+
+
