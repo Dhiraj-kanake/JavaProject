@@ -332,4 +332,14 @@ public void findRoot(double Delta,int a,int b)
 	System.out.println("Root_2 : "+root_2);
 
 }
+public double startStopwatch()
+{
+	double TimingOfStopwatch = System.currentTimeMillis();
+	return TimingOfStopwatch;
+}
+public double endStopwatch()
+{
+	double EndTime = System.currentTimeMillis();
+	return EndTime;
+}
 }
