@@ -371,6 +371,73 @@ public static int binarySearchForString(String array[],String string,int start,i
    else
    return -1;
 }
+public static String[] insertionSortForString(String arr[])
+{
+	for(int i=1;i<arr.length;i++)
+	{
+		String key=arr[i];
+		int j=i-1;
+		while(j>=0 && arr[j].compareTo(key) >0)
+		{
+			arr[j+1]=arr[j];
+			j=j-1;
+		}
+		arr[j+1]=key;
+		
+	}
+	return arr;
+}
+public static int[] insertionSortForInteger(int arr[])
+{
+	for(int i=1;i<arr.length;i++)
+	{
+		int key=arr[i];
+		int j=i-1;
+		while(j>=0 && arr[j] >key)
+		{
+			arr[j+1]=arr[j];
+			j=j-1;
+		}
+		arr[j+1]=key;
+		
+	}
+	return arr;
+}
+public static int[] bubbleSortForInteger(int arr[])
+{
+	for(int i=0;i<arr.length-1;i++)
+	{
+		for(int j=i+1;j<arr.length;j++)
+		{
+			if(arr[j]<arr[i])
+			{
+				int temp=arr[i];
+				arr[i]=arr[j];
+				arr[j]=temp;
+			}
+		}
+		
+	}
+	return arr;
+}
+public static String[] bubbleSortForString(String arr[])
+{
+	for(int i=0;i<arr.length-1;i++)
+	{
+		for(int j=i+1;j<arr.length;j++)
+		{
+			if(arr[j].compareTo(arr[i])<0)
+			{
+				String temp=arr[i];
+				arr[i]=arr[j];
+				arr[j]=temp;
+			}
+		}
+		
+	}
+	return arr;
+}
+
 }
 
 

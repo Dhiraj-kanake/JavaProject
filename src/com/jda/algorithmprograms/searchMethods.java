@@ -31,6 +31,8 @@ public static void main(String args[])
 			System.out.println("not found");
 		else
 		System.out.println("found at "+x+" position");
+		
+		break;
 	}
 	case 2:
 	{
@@ -41,7 +43,7 @@ public static void main(String args[])
 		for(int i=0;i<length;i++)
 			arr[i]=utility.ScanStringForLoop();
 		Arrays.sort(arr);
-		System.out.println("Enter Element to search");
+		System.out.println("Enter String to search");
 		String searchElement = utility.ScanStringForLoop();
 		
 		int x=Utility.binarySearchForString(arr, searchElement, 0, length);
@@ -50,7 +52,66 @@ public static void main(String args[])
 			System.out.println("not found");
 		else
 		System.out.println("found at "+x+" position");
+		
+		break;
 	}
+	
+	case 3:
+	{
+		System.out.println("enter length of array : ");
+		int length = utility.InputInteger();
+		int arr[]=new int[length];
+		System.out.println("enter all elements");
+		for(int i=0;i<length;i++)
+			arr[i]=utility.InputInteger();
+		int x[]=Utility.insertionSortForInteger(arr);
+		System.out.println(Arrays.toString(x));
+		
+		break;
+	}
+	
+	case 4:
+	{
+		System.out.println("enter length of array : ");
+		int length = utility.InputInteger();
+		String arr[]=new String[length];
+		System.out.println("enter all elements");
+		for(int i=0;i<length;i++)
+			arr[i]=utility.ScanStringForLoop();
+		String x[]=Utility.insertionSortForString(arr);
+		System.out.println(Arrays.toString(x));
+		
+		break;
+	}
+	
+	case 5:
+	{
+		System.out.println("enter length of array : ");
+		int length = utility.InputInteger();
+		int arr[]=new int[length];
+		System.out.println("enter all elements");
+		for(int i=0;i<length;i++)
+			arr[i]=utility.InputInteger();
+		int x[]=Utility.bubbleSortForInteger(arr);
+		System.out.println(Arrays.toString(x));
+		
+		break;
+	}
+	
+	case 6:
+	{
+		System.out.println("enter length of array : ");
+		int length = utility.InputInteger();
+		String arr[]=new String[length];
+		System.out.println("enter all elements");
+		for(int i=0;i<length;i++)
+			arr[i]=utility.ScanStringForLoop();
+		String x[]=Utility.bubbleSortForString(arr);
+		System.out.println(Arrays.toString(x));
+		
+		break;
+	}
+	
 	}
 	
 }
