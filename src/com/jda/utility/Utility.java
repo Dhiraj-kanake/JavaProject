@@ -21,6 +21,10 @@ public class Utility {
 	{
 	 return scanner.nextLine();
 	}
+	public String ScanStringForLoop()
+	{
+	 return scanner.next();
+	}
 	public int InputInteger()
 	{
 		return scanner.nextInt();
@@ -327,6 +331,45 @@ public ArrayList<String> findAnagram(ArrayList<Integer> ListOfPrimeNumbers)
 		
 	}
 	return TempList;
+}
+public static int binarySearch(int array[],int Number,int start,int end)
+{	
+   if(start<end)
+	{
+   	int mid = (start+end)/2;
+   	if(array[mid]==Number)
+   	{
+   			return mid;
+   	}
+		if(array[mid]>Number){
+		return binarySearch(array,Number,start,mid);
+		}
+		else{
+		return binarySearch(array,Number,mid+1,end);
+		}
+	}
+   return -1;
+}
+public static int binarySearchForString(String array[],String string,int start,int end)
+{	
+   if(start<end)
+	{
+   	int mid = (start+end)/2;
+   	if(array[mid].compareTo(string)==0)
+   	{
+   			return mid;
+   	}
+   	System.out.println("value : "+array[mid].compareTo(string));
+		if(array[mid].compareTo(string)>=1){
+		return binarySearchForString(array,string,start,mid);
+		}
+		else{
+
+		return binarySearchForString(array,string,mid+1,end);
+		}
+	}
+   else
+   return -1;
 }
 }
 
