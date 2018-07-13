@@ -8,6 +8,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 import java.util.List;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 public class Utility {
@@ -453,6 +457,24 @@ public void searchNumber(double start,double end)
 	}
 	}
 
+}
+public String[] fileSetup() throws IOException
+{
+	String filename="/home/bridgelabz/Documents/file.txt"; 
+	String line=null;
+	String string = new String();
+	try{
+	FileReader filereader = new FileReader(filename);
+	BufferedReader bufferreader = new BufferedReader(filereader);
+	while((line=bufferreader.readLine())!=null)
+		string=string+line;
+	}
+	catch(FileNotFoundException e)
+	{
+		 System.out.println("fine not found");
+	}
+	String stringarray[]=string.split(",");
+	return stringarray;
 }
 }
 
