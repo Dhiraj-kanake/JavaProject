@@ -6,6 +6,7 @@ import javax.swing.text.html.HTMLDocument.Iterator;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.List;
 import java.io.BufferedReader;
@@ -484,6 +485,31 @@ public Integer[] arrayOfStringToInteger(String array[])
 		ArrayOfInt[i]=Integer.valueOf(array[i]);
 	}
 	return ArrayOfInt;
+}
+public static  void findDayOfWeek()
+{
+	Utility utility=new Utility();
+	System.out.println("Enter day : ");
+	int day=utility.InputInteger();
+	System.out.println("enter month : ");
+	int month=utility.InputInteger();
+	System.out.println("enter year : ");
+	int year = utility.InputInteger();
+	HashMap<Integer,String> map=new HashMap<>();
+	map.put(0, "Sunday");
+	map.put(1, "Monday");
+	map.put(2, "Tuesday");
+	map.put(3, "Wednesday");
+	map.put(4, "Thursday");
+	map.put(5, "Friday");
+	map.put(6, "Saturday");
+
+	year = year-(14-month)/12;
+	int x=year +year/4-year/100+year/400;
+	month = month+12 * ((14-month)/12)-2;
+	day=(day + x + 31 * month /12) % 7;
+
+System.out.println(map.get(day));
 }
 }
 
