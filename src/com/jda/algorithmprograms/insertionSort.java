@@ -9,7 +9,8 @@ public class insertionSort {
 public static void main(String args[]) throws IOException
 {
 	Utility utility = new Utility();
-	String StringOfArray[]=utility.fileSetup();
+	String filename="/home/bridgelabz/Documents/file.txt"; 
+	String StringOfArray[]=utility.fileSetup(filename);
 	String StringOfSortedArray[]=Utility.insertionSort(StringOfArray);
 	System.out.println(Arrays.toString(StringOfSortedArray));
 }

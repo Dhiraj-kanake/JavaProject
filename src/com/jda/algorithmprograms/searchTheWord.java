@@ -11,7 +11,8 @@ public class searchTheWord {
 public static void main(String args[]) throws IOException
 {
 	Utility utility=new Utility();
-	String stringarray[]=utility.fileSetup();
+	String filename="/home/bridgelabz/Documents/file.txt"; 
+	String stringarray[]=utility.fileSetup(filename);
 	System.out.println(Arrays.toString(stringarray));
 	ArrayList<String> arraylist=new ArrayList<String>(Arrays.asList(stringarray));
 	System.out.print("enter word : ");

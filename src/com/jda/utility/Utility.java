@@ -458,9 +458,9 @@ public void searchNumber(double start,double end)
 	}
 
 }
-public String[] fileSetup() throws IOException
+public String[] fileSetup(String filename) throws IOException
 {
-	String filename="/home/bridgelabz/Documents/file.txt"; 
+	
 	String line=null;
 	String string = new String();
 	try{
@@ -476,7 +476,15 @@ public String[] fileSetup() throws IOException
 	String stringarray[]=string.split(",");
 	return stringarray;
 }
-
+public Integer[] arrayOfStringToInteger(String array[])
+{
+	Integer ArrayOfInt[]= new Integer[array.length];
+	for(int i=0;i<array.length;i++)
+	{
+		ArrayOfInt[i]=Integer.valueOf(array[i]);
+	}
+	return ArrayOfInt;
+}
 }
 
 
