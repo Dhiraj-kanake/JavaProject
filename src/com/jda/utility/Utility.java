@@ -34,6 +34,10 @@ public class Utility {
 	{
 		return scanner.nextInt();
 	}
+	public double InputDouble()
+	{
+		return scanner.nextDouble();
+	}
 	
 	
 	//  To take String as an input
@@ -520,6 +524,19 @@ public void FToC(int temp)
 {
 	double value=(temp-32)*5/9;
 	System.out.println(value);
+}
+public void findPayoff()
+{
+	System.out.println("enter number of Years : ");
+	double year=InputInteger();
+	System.out.println("enter  principle :");
+	double principal=InputInteger();
+	System.out.println("enter  interest : ");
+	double interest = InputDouble();
+	double n=12 * year;
+	double r=interest/(12 * 100);
+	double Payment =( principal*r)/(1-Math.pow((1+r), -n));
+	System.out.println(Payment);
 }
 }
 
