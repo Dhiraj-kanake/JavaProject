@@ -332,16 +332,41 @@ public ArrayList<String> findAnagram(ArrayList<Integer> ListOfPrimeNumbers)
 	}
 	return TempList;
 }
-public static int binarySearch(int array[],int Number,int start,int end)
+public static <T> int compare(T t1,T t2)
+{
+	if(t1.getClass().toString().endsWith("Integer"))
+	{
+		Integer i1=(Integer) t1;
+		Integer i2 = (Integer) t2;
+		if(i1>i2)
+			return 1;
+		else if(i1<i2)
+			return -1;
+		else
+			return 0;
+	}
+	else
+	{
+		String string1= (String) t1;
+		String string2= (String) t2;
+		if(string1.compareTo(string2)>0)
+			return 1;
+		else if(string1.compareTo(string2)<0)
+			return -1;
+		else
+			return 0;
+	}
+}
+public static <T> int binarySearch(T[] array,T Number,int start,int end)
 {	
    if(start<end)
 	{
    	int mid = (start+end)/2;
-   	if(array[mid]==Number)
+   	if(compare(array[mid],Number)==0)
    	{
    			return mid;
    	}
-		if(array[mid]>Number){
+		if(compare(array[mid],Number) > 0){
 		return binarySearch(array,Number,start,mid);
 		}
 		else{
@@ -350,94 +375,85 @@ public static int binarySearch(int array[],int Number,int start,int end)
 	}
    return -1;
 }
-public static int binarySearchForString(String array[],String string,int start,int end)
-{	
-   if(start<end)
+
+public static<T> T[] insertionSort(T arr[])
+{
+	for(int i=1;i<arr.length;i++)
 	{
-   	int mid = (start+end)/2;
-   	if(array[mid].compareTo(string)==0)
+		T key=arr[i];
+		int j=i-1;
+		while(j>=0 && compare(arr[j],key) >0)
+		{
+			arr[j+1]=arr[j];
+			j=j-1;
+		}
+		arr[j+1]=key;
+		
+	}
+	return arr;
+}
+
+public static<T> T[] bubbleSort(T arr[])
+{
+	for(int i=0;i<arr.length-1;i++)
+	{
+		for(int j=i+1;j<arr.length;j++)
+		{
+			if(compare(arr[j],arr[i])>0)
+			{
+				T temp=arr[i];
+				arr[i]=arr[j];
+				arr[j]=temp;
+			}
+		}
+		
+	}
+	return arr;
+}
+public long stopwatch()
+{
+	long startTime=System.nanoTime();
+	return startTime;
+}
+public long endwatch(long startTime)
+{
+	long endTime=System.nanoTime();
+	return endTime-startTime;
+}
+public void searchNumber(double start,double end)
+{
+	if(start<end)
+	{
+
+   	double mid = (start+end)/2;
+   	if((int)end-(int)start==1 ||(int) end-(int)start==0)
    	{
-   			return mid;
+   			System.out.println("is your number is "+ (int)start+"?");
+   			String answer=ScanString();
+   			if(answer.equals("y"))
+   			{
+   				
+   			}
+   			else
+   			{
+      			System.out.println("is your number is "+ (int)end+"?");
+      			String answer2=ScanString();
+   			}
    	}
-   	System.out.println("value : "+array[mid].compareTo(string));
-		if(array[mid].compareTo(string)>=1){
-		return binarySearchForString(array,string,start,mid);
+   	else
+   	{
+		System.out.println("is your number is between "+(int)start +" and " +(int)mid +"  (y/n) ");
+		String answer=ScanString();
+		if(answer.equals("y")){
+		searchNumber(start,mid);
 		}
 		else{
+		 searchNumber(mid+1,end);
+		}
+	}
+	}
 
-		return binarySearchForString(array,string,mid+1,end);
-		}
-	}
-   else
-   return -1;
 }
-public static String[] insertionSortForString(String arr[])
-{
-	for(int i=1;i<arr.length;i++)
-	{
-		String key=arr[i];
-		int j=i-1;
-		while(j>=0 && arr[j].compareTo(key) >0)
-		{
-			arr[j+1]=arr[j];
-			j=j-1;
-		}
-		arr[j+1]=key;
-		
-	}
-	return arr;
-}
-public static int[] insertionSortForInteger(int arr[])
-{
-	for(int i=1;i<arr.length;i++)
-	{
-		int key=arr[i];
-		int j=i-1;
-		while(j>=0 && arr[j] >key)
-		{
-			arr[j+1]=arr[j];
-			j=j-1;
-		}
-		arr[j+1]=key;
-		
-	}
-	return arr;
-}
-public static int[] bubbleSortForInteger(int arr[])
-{
-	for(int i=0;i<arr.length-1;i++)
-	{
-		for(int j=i+1;j<arr.length;j++)
-		{
-			if(arr[j]<arr[i])
-			{
-				int temp=arr[i];
-				arr[i]=arr[j];
-				arr[j]=temp;
-			}
-		}
-		
-	}
-	return arr;
-}
-public static String[] bubbleSortForString(String arr[])
-{
-	for(int i=0;i<arr.length-1;i++)
-	{
-		for(int j=i+1;j<arr.length;j++)
-		{
-			if(arr[j].compareTo(arr[i])<0)
-			{
-				String temp=arr[i];
-				arr[i]=arr[j];
-				arr[j]=temp;
-			}
-		}
-		
-	}
-	return arr;
-}
-
 }
 
 
