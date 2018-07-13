@@ -511,6 +511,16 @@ public static  void findDayOfWeek()
 
 System.out.println(map.get(day));
 }
+public void CToF(int temp)
+{
+	double value = (temp * 9/5)+32;
+	System.out.println(value);
+}
+public void FToC(int temp)
+{
+	double value=(temp-32)*5/9;
+	System.out.println(value);
+}
 }
 
 
