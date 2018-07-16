@@ -229,7 +229,7 @@ public void randomCouponNumbers(int Coupons[],int NumberOfCoupons)
 	System.out.println("total random number : "+TotalRandomNumber.size());
 	
 }
-<<<<<<< HEAD
+
 public char[] formatString(String string)
 {
 	string= string.replaceAll("\\s", "");
@@ -248,7 +248,6 @@ public char[] formatString(String string)
 			//	System.out.print(+string1[i]);
 	return string1;
 }
-=======
 
 public void generateRandomCouponNumbers(int NumberOfCoupons)
 {
@@ -290,7 +289,6 @@ public String InputString()
 	String s = scanner.next();
 	//char c= s.charAt(0);
 	return s;
->>>>>>> 378886facfa2d7b580c3903ee38af4a0a7b16a83
 }
 public void printWriterMethod(String TwoDArray[][], int NumberOfRows,int NumberOfColumns)
 {
@@ -379,6 +377,7 @@ public double findWindChill(double args[])
 	double windchill = 35.74 +0.6215 * t + (0.4275 * t - 35.75) * Math.pow(v, 0.16);	
 	return windchill;
 }
+
 }
 
 
