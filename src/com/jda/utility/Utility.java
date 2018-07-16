@@ -3,6 +3,7 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.Arrays;
 import java.util.Collections;
+import java.io.PrintWriter;
 import java.util.Random;
 import java.util.List;
 import java.util.ArrayList;
@@ -199,19 +200,25 @@ public int[] enterArray(int NumberOfCoupons)
 	return Coupons;
 }
 
-public void randomCouponNumbers(int Coupons[])
+public void randomCouponNumbers(int Coupons[],int NumberOfCoupons)
 {
-	List<Integer> GivenCouponList = new ArrayList();
+	ArrayList<Integer> GivenCouponList = new ArrayList<>();
+	for(int i=0;i<NumberOfCoupons;i++)
+	{
+		GivenCouponList.add(Coupons[i]);
+	}
 	int MaxCouponNumber=Collections.max(GivenCouponList);           //highest coupon number
 	int MinCouponNumber= Collections.min(GivenCouponList);
 	Random RandomNumber = new Random();
 	int Low =(int) MinCouponNumber;
-	int High= (int) MaxCouponNumber;
-	Set<Integer> TotalRandomNumber = new HashSet();
+	int High= (int) MaxCouponNumber+1;
+	Set<Integer> TotalRandomNumber = new HashSet<Integer>();
 	int NextRandomNumber;
 	while(true)
 	{
 		NextRandomNumber = RandomNumber.nextInt(High-Low)+Low;
+		System.out.println("size  = "+GivenCouponList.size());
+		System.out.println("random number :"+NextRandomNumber);
 		if(GivenCouponList.size()==0)
 			break;
 		TotalRandomNumber.add(NextRandomNumber);
@@ -222,6 +229,7 @@ public void randomCouponNumbers(int Coupons[])
 	System.out.println("total random number : "+TotalRandomNumber.size());
 	
 }
+<<<<<<< HEAD
 public char[] formatString(String string)
 {
 	string= string.replaceAll("\\s", "");
@@ -240,4 +248,144 @@ public char[] formatString(String string)
 			//	System.out.print(+string1[i]);
 	return string1;
 }
+=======
+
+public void generateRandomCouponNumbers(int NumberOfCoupons)
+{
+	ArrayList<Integer> GivenCouponList = new ArrayList<>();
+	for(int i=1;i<=NumberOfCoupons;i++)
+	{
+		GivenCouponList.add(i);
+	}
+	int MaxCouponNumber=Collections.max(GivenCouponList);           //highest coupon number
+	int MinCouponNumber= Collections.min(GivenCouponList);
+	Random RandomNumber = new Random();
+	int Low =(int) MinCouponNumber;
+	int High= (int) MaxCouponNumber+1;
+	List<Integer> TotalRandomNumber = new ArrayList<Integer>();
+	int NextRandomNumber;
+	int array[]=new int[NumberOfCoupons];
+	int count=0;
+	while(true)
+	{
+		if(GivenCouponList.size()==0)
+			break;
+		NextRandomNumber = RandomNumber.nextInt(High-Low)+Low;
+		//System.out.println("size  = "+GivenCouponList.size());
+		//System.out.println("random number :"+NextRandomNumber);
+		
+		TotalRandomNumber.add(NextRandomNumber);
+		if(GivenCouponList.contains(NextRandomNumber))         //if given list contains random number then add it to new list
+		{
+			array[count++]=NextRandomNumber;
+			GivenCouponList.remove(new Integer(NextRandomNumber));     //removing that element from the list
+		}
+	}
+	System.out.println("total random number : "+TotalRandomNumber.size());
+	for(int i=0;i<NumberOfCoupons;i++)
+	System.out.println(array[i]);
 }
+public String InputString()
+{
+	String s = scanner.next();
+	//char c= s.charAt(0);
+	return s;
+>>>>>>> 378886facfa2d7b580c3903ee38af4a0a7b16a83
+}
+public void printWriterMethod(String TwoDArray[][], int NumberOfRows,int NumberOfColumns)
+{
+	PrintWriter writer = new PrintWriter(System.out);
+	for(int RowNumber=0;RowNumber<NumberOfRows;RowNumber++)
+	{
+		for(int ColumnNumber = 0;ColumnNumber<NumberOfColumns;ColumnNumber++)
+		{
+			//if(Character.isDigit(TwoDArray[RowNumber][ColumnNumber].charAt(0)))
+			writer.print( TwoDArray[RowNumber][ColumnNumber]);
+			//else
+			//	writer.print(TwoDArray[RowNumber][ColumnNumber]);
+			writer.write("  ");
+
+		}
+		writer.write("\n");
+		
+	}
+	writer.flush();
+	writer.close();
+}
+public void findTripletSum(int Array[])
+{
+	boolean flag=false;
+	for(int i=0;i<Array.length-1;i++)
+	{
+		List<Integer> ArrayOfInteger = new ArrayList<Integer>();
+		for(int j=i+1;j<Array.length;j++)
+		{
+			int x = -(Array[i] + Array[j]);
+			if(ArrayOfInteger.contains(x))
+			{
+				System.out.println(x+" "+Array[i]+" "+Array[j]);
+				flag=true;
+			}
+			else
+				ArrayOfInteger.add(Array[j]);
+		}
+		
+	}
+	if(flag==false)
+		System.out.println("triplets are not available");
+}
+public void euclideanDistance(int x,int y)
+{
+	System.out.println("Euclidean Distance = " + Math.pow((x*x + y*y),0.5));
+}
+public double findDelta(int a,int b,int c)
+{
+	double result = b*b - 4*a*c;
+	//System.out.println("result"+result);
+	return result;
+}
+public void findRoot(double Delta,int a,int b)
+{
+	double sqrt=Math.pow(Delta, 1/2);
+			double root_1= (-b+sqrt)/2*a;
+			double root_2=(-b-sqrt)/2*a;
+	System.out.println("Root_1 : "+root_1);
+	System.out.println("Root_2 : "+root_2);
+
+}
+public double startStopwatch()
+{
+	double TimingOfStopwatch = System.currentTimeMillis();
+	return TimingOfStopwatch;
+}
+public double endStopwatch()
+{
+	double EndTime = System.currentTimeMillis();
+	return EndTime;
+}
+public void iterativeMethodForPermutaion(String string)
+{
+	String ArrayOfString[] = string.split("");
+	int lengthOfString = string.length();
+	for(int i=0;i<lengthOfString;i++)
+	{
+		
+	}
+}
+public double findWindChill(double args[])
+{
+	double t=args[0];
+	double v=args[1];
+	double windchill = 35.74 +0.6215 * t + (0.4275 * t - 35.75) * Math.pow(v, 0.16);	
+	return windchill;
+}
+}
+
+
+
+
+
+
+
+
+

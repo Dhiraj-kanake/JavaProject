@@ -7,17 +7,17 @@ package com.jda.functionalprograms;
 
 import com.jda.utility.Utility;
 
-public class nDistinctCouponNumbers {
+public class GenarateRandomNumbers{
 public static void main(String args[])
 {
 	Utility utility = new Utility();
 	System.out.println("Enter Number of Coupons : ");
 	int NumberOfCoupons = utility.InputInteger();
-	System.out.println("Enter Coupons : ");
-	int CouponNumbers []= utility.enterArray(NumberOfCoupons);
+	//System.out.println("Enter Coupons : ");
+	//int CouponNumbers []= utility.enterArray(NumberOfCoupons);
 	//System.out.println("out"+CouponNumbers[1]);
 	
-	utility.randomCouponNumbers(CouponNumbers,NumberOfCoupons);
+	utility.generateRandomCouponNumbers(NumberOfCoupons);
 	
 }
 }
