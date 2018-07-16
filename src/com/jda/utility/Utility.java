@@ -586,8 +586,8 @@ public void searchNumber(double start,double end)
    			}
    			else
    			{
-      			System.out.println("is your number is "+ (int)end+"?");
-      			String answer2=ScanString();
+      			System.out.println("so your number is "+ (int)end+" ");
+      			//String answer2=ScanString();
    			}
    	}
    	else
@@ -679,6 +679,304 @@ public void findPayoff()
 	double Payment =( principal*r)/(1-Math.pow((1+r), -n));
 	System.out.println(Payment);
 }
+
+//programs from local system
+
+public static void findSquareRoot(double Number)
+
+{
+
+	//newtons method
+
+	double T=Number;  //initialising T
+
+	while(Math.abs(T-(Number/T)) >(Math.pow(10,-15)*T) )
+
+	{
+
+		T=((Number/T)+T)/2;
+
+	}
+
+	System.out.println(T);
+
+}
+
+public static String convertToBinary(int Number)
+
+{
+
+	String string="";
+
+	while(Number/2!=0)
+
+	{
+
+		string=Number%2 + string;
+
+		Number=Number/2;
+
+	}
+
+	string=Number%2 + string;
+
+	//System.out.println("length of string : "+string.length());
+
+	int length = string.length();
+
+	if(length%8 !=0)
+
+	{
+
+		for(int i=0;i<string.length()%4;i++)
+
+			string = "0"+string;
+
+	}
+
+	//System.out.println("binary : "+string);
+
+	//int number=Integer.parseInt(string);
+
+	//System.out.println("number : "+number);
+
+	return string;
+
+
+
+}
+
+public void afterSwap(String BinaryNumber)
+
+{
+
+	System.out.println("Before swap : "+BinaryNumber);
+
+	
+
+	for(int i=0;i<4;i++)
+
+	{
+
+		BinaryNumber = BinaryNumber + BinaryNumber.charAt(i);
+
+	}
+
+	StringBuilder sb=new StringBuilder(BinaryNumber);
+
+	sb.delete(0, 4);
+
+	System.out.println("After swap : "+sb);
+
+	int Number=0;
+
+	String AfterSwap=sb.toString();
+
+	int k=AfterSwap.length()-1;
+
+	for(int i=0;i<AfterSwap.length();i++)
+
+	{
+
+		int v=Integer.parseInt(String.valueOf(AfterSwap.charAt(i)));
+
+	  Number = (int) (Number + (v * Math.pow(2, k--)));
+
+	  //System.out.println("value : "+v);
+
+		//System.out.println("Number : "+Number);
+
+	}
+
+	System.out.println("decimal Number : "+Number);
+
+	double value=Math.log(Number)/Math.log(2);
+
+	double floorvalue=Math.floor(value);
+
+	System.out.println("value : "+value+" floor : "+floorvalue);
+
+	if(value==floorvalue)
+
+		System.out.println("in power of 2");
+
+	else
+
+		System.out.println("not in power of 2");
+
+}
+
+public void returnChange(int Money)
+
+{
+
+	int array[]= {1000,500,100,50,10,5,2,1};
+
+	int index=0;
+
+	int count[] =new int[8];
+
+	while(true)
+
+	{
+
+		if(Money ==0)
+
+			break;
+
+		if(Money >= array[index])
+
+		{
+
+			count[index]=Money/array[index];
+
+			Money=Money%array[index];
+
+		}
+
+		else
+
+			index++;
+
+			
+
+	}
+
+	//System.out.println("money = "+ Arrays.toString(count));
+
+	int TotalNumberOfNotes=0;
+
+	for(int i=0;i<count.length;i++)
+
+	{
+
+		if(count[i]*1!=0)
+
+		{
+
+			System.out.println(count[i] +" X "+array[i] +" rupee note");
+
+		}
+
+		TotalNumberOfNotes=TotalNumberOfNotes+count[i];
+
+	}
+
+	System.out.print("Total Number Of Notes : "+TotalNumberOfNotes);
+
+}
+
+public String[] merge(String Array[],int low,int mid,int high)
+
+{
+
+	String arrayOne[]=new String[mid-low+1];
+
+	String arrayTwo[]=new String[high-mid];
+
+	for(int i=0;i<arrayOne.length;i++)
+
+		arrayOne[i]=Array[i+low];
+
+	for(int j=0;j<arrayTwo.length;j++)
+
+		arrayTwo[j]=Array[j+mid+1];
+
+	int lengthOfArrayOne=arrayTwo.length;
+
+	int lengthOfArrayTwo=arrayTwo.length;
+
+	int i=0,j=0,k=low;
+
+	while(i<lengthOfArrayOne && j<lengthOfArrayTwo)
+
+	{
+
+		if(arrayOne[i].compareTo(arrayTwo[j])<0)
+
+		{
+
+			Array[k]=arrayOne[i];
+
+			i++;
+
+		}
+
+		else
+
+		{
+
+			Array[k]=arrayTwo[j];
+
+			j++;
+
+		}
+
+		k++;
+
+	}
+
+	while(i<lengthOfArrayOne)
+
+	{
+
+		Array[k]=arrayOne[i];
+
+		i++;
+
+		k++;
+
+	}
+
+	while(j<lengthOfArrayTwo)
+
+	{
+
+		Array[k]=arrayTwo[j];
+
+		j++;
+
+		k++;
+
+	}
+
+	
+
+	return Array;
+
+}
+
+
+
+public String[] mergeSortForString(String ArrayOfString[],int l,int r)
+
+{
+
+	if(l<r)
+
+	{
+
+	int mid= l +(r-l)/2;
+
+	mergeSortForString(ArrayOfString,l,mid);
+
+	mergeSortForString(ArrayOfString,mid+1,r);
+
+	ArrayOfString=merge(ArrayOfString,l,mid,r);
+
+	//System.out.println("Sorted array : "+Arrays.toString(array));
+
+	}
+
+	return ArrayOfString;
+
+}
+
+
+
+
+
+
 }
 
 
