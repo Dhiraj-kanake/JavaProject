@@ -478,7 +478,7 @@ public String[] fileSetup(String filename) throws IOException
 	{
 		 System.out.println("fine not found");
 	}
-	String stringarray[]=string.split(",");
+	String stringarray[]=string.split("\\s");
 	return stringarray;
 }
 public Integer[] arrayOfStringToInteger(String array[])
