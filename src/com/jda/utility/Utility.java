@@ -3,6 +3,10 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.Arrays;
 import java.util.Collections;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Random;
 import java.util.List;
@@ -14,6 +18,44 @@ public class Utility {
 	{
 		scanner = new Scanner(System.in);
 		
+	}
+	class node<T>
+	{
+		T data;
+		node next;
+		node(T data)
+		{
+			this.data=data;
+			this.next=null;
+		}
+	}
+	public <T> void  createNode(T data)
+	{
+		T newnode=(T) new node(data);
+		
+	}
+	public void createLinkedList(String array[])
+	{
+		node head=new node(null);
+		node temp=head;
+		for(int i=0;i<array.length;i++)
+		{
+			node newnode=new node(array[i]);
+			if(head==null)
+				head=newnode;
+			else
+			{
+				while(head.next!=null)
+					head=head.next;
+				head.next=newnode;
+			}
+		}
+		head=temp;
+		while(head.next!=null)
+		{
+			System.out.println(" value="+head.data);
+			head=head.next;
+		}
 	}
 	public String ScanString()
 	{
@@ -376,6 +418,24 @@ public double findWindChill(double args[])
 	double v=args[1];
 	double windchill = 35.74 +0.6215 * t + (0.4275 * t - 35.75) * Math.pow(v, 0.16);	
 	return windchill;
+}
+public String[] fileSetup(String filename) throws IOException
+{
+	
+	String line=null;
+	String string = new String();
+	try{
+	FileReader filereader = new FileReader(filename);
+	BufferedReader bufferreader = new BufferedReader(filereader);
+	while((line=bufferreader.readLine())!=null)
+		string=string+line;
+	}
+	catch(FileNotFoundException e)
+	{
+		 System.out.println("fine not found");
+	}
+	String stringarray[]=string.split(" \\s");
+	return stringarray;
 }
 
 }
