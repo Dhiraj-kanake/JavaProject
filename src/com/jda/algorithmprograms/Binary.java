@@ -1,4 +1,4 @@
-package com.jda.functionalPrograms;
+package com.jda.algorithmprograms;
 
 import com.jda.utility.Utility;
 
