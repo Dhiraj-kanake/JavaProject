@@ -971,9 +971,58 @@ public String[] mergeSortForString(String ArrayOfString[],int l,int r)
 	return ArrayOfString;
 
 }
+public class bubbleSortForGenerics<T extends Comparable<T>>
+{
+	public  T[] bubbleForGenerics(T[] array)
+	{
+	for(int i=0;i<array.length-1;i++)
+	{
+		for(int j=i+1;j<array.length;j++)
+		{
+			if(array[j].compareTo(array[i])<0)
+			{
+				T temp=array[i];
+				array[i]=array[j];
+				array[j]=temp;
+			}
+		}
+		
+	}
+	return array;
+	}
+	
+}
+public Integer[] inputIntArray()           
+{
+	System.out.println("enter length of Integer array : ");
+	Integer LengthOfIntegerArray=InputInteger();
+	System.out.println("enter Integer array : ");
+	Integer IntArray[]=new Integer[LengthOfIntegerArray];
+	for(int i=0;i<LengthOfIntegerArray;i++)
+		IntArray[i]=InputInteger();
+	return  IntArray;
+}
 
-
-
+public String[] inputStringArray()           
+{
+	System.out.println("enter length of String array : ");
+	Integer LengthOfStringArray=InputInteger();
+	System.out.println("enter Integer array : ");
+	String StringArray[]=new String[LengthOfStringArray];
+	for(int i=0;i<LengthOfStringArray;i++)
+		StringArray[i]=ScanStringForLoop();
+	return  StringArray;
+}
+public Double[] inputDoubleArray()           
+{
+	System.out.println("enter length of Double array : ");
+	int LengthOfDoubleArray=InputInteger();
+	System.out.println("enter Integer array : ");
+	Double DoubleArray[]=new Double[LengthOfDoubleArray];
+	for(int i=0;i<LengthOfDoubleArray;i++)
+		DoubleArray[i]=InputDouble();
+	return  DoubleArray;
+}
 
 
 
