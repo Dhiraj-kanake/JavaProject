@@ -34,22 +34,33 @@ public class Utility {
 		T newnode=(T) new node(data);
 		
 	}
-	public void createLinkedList(String array[])
+	public <T> void createLinkedList(String array[])
 	{
-		node head=new node(null);
-		node temp=head;
+		node  head=new node(null);
+		node temp=new node(null);
+		
 		for(int i=0;i<array.length;i++)
 		{
 			node newnode=new node(array[i]);
-			if(head==null)
+			if(head.data==null)
+			{
+				System.out.println("inside head");
 				head=newnode;
+				temp=head;
+				System.out.println("inside head value : "+head.data);
+			}
 			else
 			{
+				System.out.println("else");
 				while(head.next!=null)
+				{
 					head=head.next;
+					System.out.println("while");
+				}
 				head.next=newnode;
 			}
 		}
+		System.out.println("out");
 		head=temp;
 		while(head.next!=null)
 		{
@@ -423,21 +434,23 @@ public String[] fileSetup(String filename) throws IOException
 {
 	
 	String line=null;
-	String string = new String();
+	String string=new String();
 	try{
 	FileReader filereader = new FileReader(filename);
 	BufferedReader bufferreader = new BufferedReader(filereader);
 	while((line=bufferreader.readLine())!=null)
-		string=string+line;
+	{
+		string=line;
+	}
 	}
 	catch(FileNotFoundException e)
 	{
 		 System.out.println("fine not found");
 	}
-	String stringarray[]=string.split(" \\s");
+	String stringarray[]=string.trim().split("\\,");
 	return stringarray;
+	
 }
-
 }
 
 
