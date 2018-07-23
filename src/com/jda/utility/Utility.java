@@ -3,6 +3,7 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,6 +13,7 @@ import java.util.Random;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 public class Utility {
 	Scanner scanner;
 	public Utility()
@@ -451,6 +453,26 @@ public String[] fileSetup(String filename) throws IOException
 	return stringarray;
 	
 }
+
+public ArrayList<Integer> findRangeOfPrimeNumbers(int rangeLow,int rangeHigh)
+{
+	boolean flag=false;
+	ArrayList<Integer> primeNumberList = new ArrayList<>();
+		for(int i=rangeLow;i<=rangeHigh;i++)  //number to check whether it is prime or not
+		{
+			flag = false;
+			for(int j=2;j<=i/2;j++)   //trying to divide that number with j==2 to j==number/2
+			{
+				if(i%j==0)
+					flag=true;
+			}
+			if(flag ==false && i>=2)
+				primeNumberList.add(i);
+		}
+		//System.out.println(primeNumberList);
+		return (primeNumberList);
+}
+
 }
 
 
