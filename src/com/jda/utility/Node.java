@@ -88,4 +88,62 @@ public class Node <Generic>{
 		}
 		System.out.println("new string : "+line);
 	}
+	public static Node<Object> createOrderedLinkedList(int array[])
+	{
+		//Arrays.asList(array).forEach(System.out::println);
+		Node<Object> Head=null;
+		Node<Object> Temp=null;
+		for(int i=0;i<array.length;i++)
+		{
+			Node<Object> NewNode = new Node<Object>(array[i]);
+			if(Head==null)
+			{
+				Head=NewNode;
+				Temp=Head;
+			}
+			else
+			{
+				while(Head.next!=null)
+				{
+					Head=Head.next;
+				}
+				Head.next=NewNode;
+			}
+		}
+		return Temp;
+	}
+	public static Node<Object> sortLinkedList(Node<Object> Head)
+	{
+		System.out.println("inside sort:");
+		Node<Object> top = Head;
+		if(Head.next==null || Head==null)
+			return Head;
+		while(Head.next!=null)
+		{
+			Node<Object> tempOne = Head;
+			System.out.println("tempOne : "+tempOne.data);
+			Node<Object> tempTwo = tempOne.next;
+			while(tempTwo!=null)
+			{
+				System.out.println("tempTwo : "+tempTwo.data);
+				if((int) tempOne.data > (int) tempTwo.data)
+				{
+					System.out.println("it is less"+tempOne.data +" "+tempTwo.data);
+					int data = (int) tempOne.data;
+					tempOne.data=tempTwo.data;
+					tempTwo.data=data;
+				}
+				tempTwo=tempTwo.next;
+			}
+			Head=Head.next;
+		}
+		return top;
+	}
+	public void writeInFile(String line,String FileName) throws IOException
+	{
+		FileWriter FW=new FileWriter(FileName);
+		BufferedWriter BW = new BufferedWriter(FW);
+		BW.write(line);
+		BW.close();
+	}
 }
