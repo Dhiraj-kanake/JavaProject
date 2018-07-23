@@ -1,5 +1,11 @@
 package com.jda.utility;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class Node <Generic>{
@@ -45,5 +51,41 @@ public class Node <Generic>{
 			}
 		}
 		return Temp;
+	}
+	public static void findWord(Node<Object> Head,String SearchWord,String FileName ) throws IOException
+	{
+		Node Temp=Head;
+		FileReader filereader = new FileReader(FileName);
+		BufferedReader bufferReader = new BufferedReader(filereader);
+		String line=null;
+		boolean flag=false;
+		while(Temp.next!=null)
+		{
+			if(Temp.data.equals(SearchWord))
+			{
+				System.out.println("Found");
+			//	while((line = bufferReader.readLine())!=null)
+				 line =bufferReader.readLine();
+				line = line.replace(SearchWord+",","" );
+				FileWriter FW=new FileWriter(FileName);
+				BufferedWriter BW = new BufferedWriter(FW);
+				BW.write(line);
+				flag=true;
+				BW.close();
+				break;
+			}
+			Temp=Temp.next;
+		}
+		if(flag==false)
+		{
+			System.out.println(" Not Found");
+			 line =bufferReader.readLine();
+				FileWriter FW=new FileWriter(FileName);
+				BufferedWriter BW = new BufferedWriter(FW);
+				line =line+","+SearchWord;
+				BW.write(line);
+				BW.close();
+		}
+		System.out.println("new string : "+line);
 	}
 }

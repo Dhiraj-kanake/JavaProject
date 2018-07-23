@@ -19,10 +19,19 @@ public static void main(String args[]) throws IOException
 	}
 	Node node = new Node(null);
 	String ArrayOfString[]=utility.fileSetup(FileName);
-	Arrays.asList(ArrayOfString).forEach(System.out::println);
+	//Arrays.asList(ArrayOfString).forEach(System.out::println);
 	Node Head = node.createLinkedList(ArrayOfString);
+	Node Temp=Head;
 	
-	//while(Head.next!=null)
-		//System.out.println("Head->data : "+Head.data);
+	while(Temp!=null)
+	{
+		System.out.println("Head->data : "+Temp.data);
+		Temp=Temp.next;
+	}
+	System.out.println("Enter Word to search : ");
+	String SearchWord = utility.ScanString();
+	node.findWord(Head,SearchWord,FileName);
+	
+	
 }
 }
