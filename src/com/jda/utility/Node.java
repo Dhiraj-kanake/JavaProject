@@ -59,14 +59,14 @@ public class Node <Generic>{
 		BufferedReader bufferReader = new BufferedReader(filereader);
 		String line=null;
 		boolean flag=false;
-		while(Temp.next!=null)
+		while(Temp!=null)
 		{
 			if(Temp.data.equals(SearchWord))
 			{
 				System.out.println("Found");
 			//	while((line = bufferReader.readLine())!=null)
 				 line =bufferReader.readLine();
-				line = line.replace(SearchWord+",","" );
+				line = line.replace(SearchWord,"" );
 				FileWriter FW=new FileWriter(FileName);
 				BufferedWriter BW = new BufferedWriter(FW);
 				BW.write(line);
@@ -82,7 +82,7 @@ public class Node <Generic>{
 			 line =bufferReader.readLine();
 				FileWriter FW=new FileWriter(FileName);
 				BufferedWriter BW = new BufferedWriter(FW);
-				line =line+","+SearchWord;
+				line =line+" "+SearchWord;
 				BW.write(line);
 				BW.close();
 		}

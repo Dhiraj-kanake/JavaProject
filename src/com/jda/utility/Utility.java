@@ -447,7 +447,7 @@ public String[] fileSetup(String filename) throws IOException
 	{
 		 System.out.println("fine not found");
 	}
-	String stringarray[]=string.trim().split("\\,");
+	String stringarray[]=string.trim().split("\\s+");
 	return stringarray;
 	
 }
