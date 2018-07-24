@@ -472,6 +472,25 @@ public ArrayList<Integer> findRangeOfPrimeNumbers(int rangeLow,int rangeHigh)
 		//System.out.println(primeNumberList);
 		return (primeNumberList);
 }
+public int findDayOfWeekToPrintCalender(int day,int month,int year)
+{
+	HashMap<Integer,String> map=new HashMap<>();
+	map.put(0, "Sunday");
+	map.put(1, "Monday");
+	map.put(2, "Tuesday");
+	map.put(3, "Wednesday");
+	map.put(4, "Thursday");
+	map.put(5, "Friday");
+	map.put(6, "Saturday");
+
+	year = year-(14-month)/12;
+	int x=year +year/4-year/100+year/400;
+	month = month+12 * ((14-month)/12)-2;
+	day=(day + x + 31 * month /12) % 7;
+
+//System.out.println(map.get(day));
+return day;
+}
 
 }
 
