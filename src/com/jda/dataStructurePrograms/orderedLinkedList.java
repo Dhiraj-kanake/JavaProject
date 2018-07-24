@@ -18,7 +18,7 @@ public class orderedLinkedList {
 		}
 		Node node = new Node(null);
 		String ArrayOfString[]=utility.fileSetup(FileName);
-		int ArrayOfInteger[]=new int[ArrayOfString.length];
+		Integer ArrayOfInteger[]=new Integer[ArrayOfString.length];
 		for(int i=0;i<ArrayOfString.length;i++)
 		{
 			ArrayOfInteger[i]=Integer.parseInt(ArrayOfString[i]);

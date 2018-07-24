@@ -88,7 +88,7 @@ public class Node <Generic>{
 		}
 		System.out.println("new string : "+line);
 	}
-	public static Node<Object> createOrderedLinkedList(int array[])
+	public static Node<Object> createOrderedLinkedList(Object array[])
 	{
 		//Arrays.asList(array).forEach(System.out::println);
 		Node<Object> Head=null;
@@ -145,5 +145,22 @@ public class Node <Generic>{
 		BufferedWriter BW = new BufferedWriter(FW);
 		BW.write(line);
 		BW.close();
+	}
+	public void findNumber(Node<Object> list,int number)
+	{
+		boolean flag=false;
+		while(list!=null)
+		{
+			if((int)list.data==number)
+			{
+				flag=true;
+				break;
+			}
+			list=list.next;
+		}
+		if(flag)
+			System.out.println("found:");
+		else
+			System.out.println("not found:");
 	}
 }
