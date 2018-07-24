@@ -546,7 +546,51 @@ public int[][] calenderDays(int month,int year)
 	}
 	return arr;
 }
-
+public ArrayList<Integer> findAnagram(ArrayList<Integer> ListOfPrimeNumbers)
+{
+	ArrayList<String> TempList = new ArrayList<>();
+	for(int i=0;i<ListOfPrimeNumbers.size();i++)          //converting one element into array
+	{
+		int Number = ListOfPrimeNumbers.get(i);        //getting each element
+		int arr[]=new int[Integer.toString(Number).length()];     //getting array length
+		int index=0;             // index of array to store each element
+		while(Number>0)
+		{
+			arr[index++]=Number%10;
+			Number=Number/10;
+		}
+		Arrays.sort(arr);
+		
+		TempList.add(Arrays.toString(arr));
+	}
+	ArrayList<Integer> list=new ArrayList<>();
+	for(int IndexOfElementToCheck=0;IndexOfElementToCheck<TempList.size()-1;IndexOfElementToCheck++)
+	{
+		Set<Integer> IndexOfDuplicateElements = new HashSet<>();
+		IndexOfDuplicateElements.add(IndexOfElementToCheck);
+		boolean flag=false;
+		for(int NextIndex=IndexOfElementToCheck+1;NextIndex<TempList.size();NextIndex++)
+		{
+			if(TempList.get(NextIndex).equals(TempList.get(IndexOfElementToCheck)))
+			{
+				flag=true;
+				IndexOfDuplicateElements.add(NextIndex);
+			}
+		}
+		if(flag==true)
+		{
+			for(Integer Index : IndexOfDuplicateElements)
+			{
+				list.add(ListOfPrimeNumbers.get(Index));
+				System.out.print(ListOfPrimeNumbers.get(Index)+"  ");
+			}
+			System.out.println("   ");
+			return list;
+		}
+		
+	}
+	return null;
+}
 }
 
 
