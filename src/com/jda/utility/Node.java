@@ -163,4 +163,17 @@ public class Node <Generic>{
 		else
 			System.out.println("not found:");
 	}
+	public static  Node<Object> addNode(Node<Object> head,Node<Object> newNode)
+	{
+		Node<Object> temp=head;
+		if(temp==null)
+			return newNode;
+		else
+		{
+			while(temp.next!=null)
+				temp=temp.next;
+			temp.next=newNode;
+			return head;
+		}
+	}
 }

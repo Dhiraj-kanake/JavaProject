@@ -491,6 +491,61 @@ public int findDayOfWeekToPrintCalender(int day,int month,int year)
 //System.out.println(map.get(day));
 return day;
 }
+public int[][] calenderDays(int month,int year)
+{
+	int arr[][]=new int[5][7];
+	int arrOfMonth[] = {31,28,31,30,31,30,31,31,30,31,30,31};
+	int day=findDayOfWeekToPrintCalender(1,month,year);
+	//System.out.println("day : "+day);
+	int number=1;
+	int i;
+	int spaces =day;
+	if("Yes".equals(FindLeapYear(year)) && month ==2)
+	{
+		for(i=0;i<5;i++)
+		{
+			for(int j=0;j<7;j++)
+			{
+				if(i==0)
+				{
+					j=day;
+				arr[i][j]=number;
+				day=day+1;
+				}
+				else
+				arr[i][j+day]=number;
+				number=number+1;
+				if(number==30)
+					break;
+			}
+			if(number==30)
+				break;
+		}
+	}
+	else
+	{
+		for(i=0;i<5;i++)
+		{
+			for(int j=0;j<7;j++)
+			{
+				if(i==0)
+				{
+					j=day;
+				arr[i][j]=number;
+				day=day+1;
+				}
+				else
+					arr[i][j]=number;
+				number=number+1;
+				if(number==arrOfMonth[month-1]+1)
+					break;
+			}
+			if(number==arrOfMonth[month-1]+1)
+				break;
+		}
+	}
+	return arr;
+}
 
 }
 
