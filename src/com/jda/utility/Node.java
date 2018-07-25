@@ -11,10 +11,12 @@ import java.util.Arrays;
 public class Node <Generic>{
 	public Generic data;
 	public Node<Generic> next;
+	public Node<Generic> prev;
 	public Node(Generic data)
 	{
 		this.data=data;
 		this.next=null;
+		this.prev=null;
 		//System.out.println("this.data :"+this.data); 
 	}
 	

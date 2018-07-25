@@ -1,7 +1,7 @@
 package com.jda.utility;
 import java.util.EmptyStackException;
-public class stack {
-char Array[];
+public class stack<Generic> {
+char[] Array;
 int size;
 int index = 0;
 public stack(int size)

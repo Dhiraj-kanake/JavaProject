@@ -548,11 +548,11 @@ public int[][] calenderDays(int month,int year)
 }
 public ArrayList<Integer> findAnagram(ArrayList<Integer> ListOfPrimeNumbers)
 {
-	System.out.println("ListOfPrimeNumbers : "+ListOfPrimeNumbers);
+	//System.out.println("ListOfPrimeNumbers : "+ListOfPrimeNumbers);
 	ArrayList<String> TempList = new ArrayList<>();
-	for(int i=0;i<ListOfPrimeNumbers.size();i++)          //converting one element into array
+	for(int i=0;i<ListOfPrimeNumbers.size();i++)          //converting each number  into array
 	{
-		int Number = ListOfPrimeNumbers.get(i);        //getting each element
+		int Number = ListOfPrimeNumbers.get(i);        //getting each number
 		int arr[]=new int[Integer.toString(Number).length()];     //getting array length
 		int index=0;             // index of array to store each element
 		while(Number>0)
@@ -569,14 +569,16 @@ public ArrayList<Integer> findAnagram(ArrayList<Integer> ListOfPrimeNumbers)
 	for(int IndexOfElementToCheck=0;IndexOfElementToCheck<TempList.size()-1;IndexOfElementToCheck++)
 	{
 		Set<Integer> IndexOfDuplicateElements = new HashSet<>();
+		//System.out.println("IndexOfEelmenttocheck"+IndexOfElementToCheck);
 		IndexOfDuplicateElements.add(IndexOfElementToCheck);
 		boolean flag=false;
 		for(int NextIndex=IndexOfElementToCheck+1;NextIndex<TempList.size();NextIndex++)
 		{
+			//System.out.println("nextIndex : "+NextIndex);
 			if(TempList.get(NextIndex).equals(TempList.get(IndexOfElementToCheck)))
 			{
-				System.out.println("sdjgajsd"+TempList.get(NextIndex));
-				System.out.println("jdcjsg"+TempList.get(IndexOfElementToCheck));
+				//System.out.println("sdjgajsd"+TempList.get(NextIndex));
+				//System.out.println("jdcjsg"+TempList.get(IndexOfElementToCheck));
 				flag=true;
 				IndexOfDuplicateElements.add(NextIndex);
 			}
@@ -586,14 +588,14 @@ public ArrayList<Integer> findAnagram(ArrayList<Integer> ListOfPrimeNumbers)
 			for(Integer Index : IndexOfDuplicateElements)
 			{
 				list.add(ListOfPrimeNumbers.get(Index));
-				System.out.print(ListOfPrimeNumbers.get(Index)+"  ");
+				//System.out.print(ListOfPrimeNumbers.get(Index)+"   ");
 			}
-			System.out.println("   ");
-			return list;
+			//System.out.println("   ");
+			//return list;
 		}
 		
 	}
-	return null;
+	return list;
 }
 public void findNumberOfBST(long number)
 {
