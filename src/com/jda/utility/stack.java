@@ -1,6 +1,6 @@
 package com.jda.utility;
 import java.util.EmptyStackException;
-public class stack<Generic> {
+public class stack {
 char[] Array;
 int size;
 int index = 0;
@@ -24,7 +24,7 @@ public char pop()
 	{
 		return 'T';
 	}
-	return Array[--index];
+	return Array[index--];
 }
 public boolean isEmpty()
 {

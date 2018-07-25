@@ -33,4 +33,8 @@ public boolean isFull()
 	else
 		return false;		
 }
+public int size()
+{
+	return size;
+}
 }

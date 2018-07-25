@@ -2,6 +2,7 @@ package com.jda.dataStructurePrograms;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import com.jda.utility.Node;
@@ -18,6 +19,7 @@ public static void main(String args[]) throws IOException
 	for(int i=0;i<arr.length;i++)
 		ArrayOfInt[i] = Integer.parseInt(arr[i]);
 	Node<Object> list = new Node<Object>(null);
+	System.out.println("elements :"+Arrays.toString(ArrayOfInt));
 	//System.out.println(ArrayOfInt[1]);
 	HashMap<Integer,Node<Object>> hashmap = new HashMap<>();
 	
@@ -27,7 +29,7 @@ public static void main(String args[]) throws IOException
 		hashmap.put(i,list);
 		
 	}
-	System.out.println("Enter number to search :");
+/*	System.out.println("Enter number to search :");
 	int number=utility.InputInteger();
 	Node<Object> lst=hashmap.get(number%11);
 	Node<Object> temp=lst;
@@ -35,10 +37,24 @@ public static void main(String args[]) throws IOException
 	{
 		System.out.print(temp.data+" ");
 		temp=temp.next;
+	}*/
+	
+	for(int i=0;i<11;i++)
+	{
+		Node<Object> tempnode=hashmap.get(i);
+		if(tempnode!=null)
+		{
+		while(tempnode!=null)
+		{
+			System.out.print(tempnode.data+" ");
+			tempnode=tempnode.next;
+		}
+		System.out.println();
 	}
-	temp=lst;
-	System.out.println();
-	node.findNumber(temp,number);
+	}
+	//temp=lst;
+	//System.out.println();
+	//node.findNumber(temp,number);
 }
 public static Node<Object> createLinkedList(int key,int arrayOfInt[])
 {

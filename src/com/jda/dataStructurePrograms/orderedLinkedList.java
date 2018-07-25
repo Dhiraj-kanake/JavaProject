@@ -16,7 +16,7 @@ public class orderedLinkedList {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Node node = new Node(null);
+		Node<Object> node = new Node<Object>(null);
 		String ArrayOfString[]=utility.fileSetup(FileName);
 		Integer ArrayOfInteger[]=new Integer[ArrayOfString.length];
 		for(int i=0;i<ArrayOfString.length;i++)

@@ -10,9 +10,11 @@ public static void main(String args[])
 	System.out.println("enter arithmetic expression :");
 	String ArithmeticExpression=utility.ScanString();
 	stack st =new stack(ArithmeticExpression.length());
-	boolean flag=true;
+	boolean flag=false;
+	boolean flagone=false;
 	for(int i=0;i<ArithmeticExpression.length();i++)
 	{
+		flag=false;
 		if(ArithmeticExpression.charAt(i) == '(')
 		{
 			st.push(ArithmeticExpression.charAt(i));
@@ -20,15 +22,18 @@ public static void main(String args[])
 		else if(ArithmeticExpression.charAt(i) == ')')
 		{
 			char ch=st.pop();
-			if(ch=='T');
+			if(ch=='(');
 			{
-				//System.out.println("False");
-				flag = false;
-			break;
+				//System.out.println("inside");
+				flag = true;
+			}
+			if(ch=='T')
+			{
+				flagone=true;
 			}
 		}
 	}
-	if(st.size() ==0 && flag ==true)
+	if(st.size() ==0 && flag ==true && flagone==false)
 		System.out.println("True");
 	else
 		System.out.println("False");

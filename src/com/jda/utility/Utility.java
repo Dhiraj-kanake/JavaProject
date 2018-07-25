@@ -493,14 +493,13 @@ return day;
 }
 public int[][] calenderDays(int month,int year)
 {
-	int arr[][]=new int[5][7];
-	int arrOfMonth[] = {31,28,31,30,31,30,31,31,30,31,30,31};
-	int day=findDayOfWeekToPrintCalender(1,month,year);
-	//System.out.println("day : "+day);
+	int arr[][]=new int[5][7];                  //5 rows and 7 columns
+	int arrOfMonth[] = {31,28,31,30,31,30,31,31,30,31,30,31};       //month days
+	int day=findDayOfWeekToPrintCalender(1,month,year);         //first day of given month
 	int number=1;
 	int i;
 	int spaces =day;
-	if("Yes".equals(FindLeapYear(year)) && month ==2)
+	if("Yes".equals(FindLeapYear(year)) && month ==2)      //if it is leap year
 	{
 		for(i=0;i<5;i++)
 		{

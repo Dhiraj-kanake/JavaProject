@@ -15,9 +15,6 @@ Utility utility=new Utility();
 	while(i<=1000)
 	{
 		ArrayList<Integer> list=utility.findRangeOfPrimeNumbers(i-100,i );
-		//System.out.println("for " +(i-100)+" to "+i);
-	//	Integer array[]=list.toArray(new Integer[list.size()]);
-		//System.out.println("list ==="+list);
 		ArrayList<Integer> listTwo=utility.findAnagram(list);
 		ArrayList<Integer> listNotAnagram=new ArrayList<Integer>();
 		for(int k=0;k<list.size();k++)
@@ -28,9 +25,7 @@ Utility utility=new Utility();
 			}
 		}
 		notAnagram.add(listNotAnagram);
-		//System.out.println("list : "+listTwo);
 		twoDArray.add(listTwo);
-		//System.out.println(list);
 		i=i+100;
 	}
 	int index1;
