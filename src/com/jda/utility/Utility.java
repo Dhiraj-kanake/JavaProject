@@ -595,6 +595,21 @@ public ArrayList<Integer> findAnagram(ArrayList<Integer> ListOfPrimeNumbers)
 	}
 	return null;
 }
+public void findNumberOfBST(long number)
+{
+	long result=1;
+	long twoN=number*2;
+	if(number>(twoN-number))
+		number=twoN-number;
+	for(int i=0;i<number;++i)
+	{
+		result=result*(twoN-i);
+		result=result/(i+1);
+	}
+	result=result/(number+1);
+	System.out.println("output :"+result);
+		
+}
 }
 
 
