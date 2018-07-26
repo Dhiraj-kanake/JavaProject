@@ -21,7 +21,7 @@ public static void main(String args[])
 	System.out.println("Name : "+name);
 	System.out.println("Auther :"+auther);
 	@SuppressWarnings("unchecked")
-	Iterator<String> itr=jarray.iterator();
+	Iterator<String> itr=jarray.iterator();          // Iterator for array of company list
 	System.out.println("Company List : ");
 	while(itr.hasNext())
 		System.out.println(itr.next());
