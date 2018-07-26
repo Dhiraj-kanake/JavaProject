@@ -39,6 +39,52 @@ public class JSONUtility {
 		}catch(Exception e)
 		{e.printStackTrace();}
 	}
+	public void getStockInfo(String value)
+	{
+		try
+		{
+			Object object=parser.parse(new FileReader("/home/bridgelabz/Documents/stockReport.txt"));
+			JSONObject obj=(JSONObject) object;
+			JSONArray rice = (JSONArray) obj.get(value);
+			Iterator itr = rice.iterator();
+			while(itr.hasNext())
+			{
+				JSONObject riceObject=(JSONObject)itr.next();
+				System.out.println("Name : "+riceObject.get("Name"));
+				System.out.println("Shares : "+riceObject.get("Shares"));
+				System.out.println("Share Price : "+riceObject.get("SharePrice"));
+				System.out.println();
+			}
+				
+		}catch(Exception e)
+		{e.printStackTrace();}
+	}
+	public void calculateStock(String value)
+	{
+		try
+		{
+			Object object=parser.parse(new FileReader("/home/bridgelabz/Documents/stockReport.txt"));
+			JSONObject obj=(JSONObject) object;
+			JSONArray rice = (JSONArray) obj.get(value);
+			Iterator itr = rice.iterator();
+			long totalSharePriceOfCompany=0;
+			while(itr.hasNext())
+			{
+				JSONObject riceObject=(JSONObject)itr.next();
+				System.out.println("For : "+riceObject.get("Name"));
+				
+				long shares =(long) riceObject.get("Shares");
+				long sharePrice=(long)riceObject.get("SharePrice");
+				long sharePriceForPerson = shares * sharePrice;
+				System.out.println("total share price : "+sharePriceForPerson);
+				totalSharePriceOfCompany += sharePriceForPerson;
+				System.out.println();
+			}
+			System.out.println("Total Stock price for "+value +" is "+totalSharePriceOfCompany);
+		}catch(Exception e)
+		{e.printStackTrace();}
+	}
+	
 	public Object readJasonFile(String fileName) throws FileNotFoundException, IOException, ParseException
 	{
 		Object object=parser.parse(new FileReader(fileName));
