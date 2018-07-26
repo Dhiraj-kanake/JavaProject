@@ -1,11 +1,16 @@
 package com.jda.utility;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class JSONUtility {
 	JSONParser parser;
@@ -33,6 +38,19 @@ public class JSONUtility {
 				
 		}catch(Exception e)
 		{e.printStackTrace();}
+	}
+	public Object readJasonFile(String fileName) throws FileNotFoundException, IOException, ParseException
+	{
+		Object object=parser.parse(new FileReader(fileName));
+		return object;
+		
+	}
+	public String replace(String message,String from,String to)
+	{
+		Pattern p1=Pattern.compile(from);
+		Matcher m1=p1.matcher(message);
+		message=m1.replaceAll(to);
+		return message;
 	}
 
 }
