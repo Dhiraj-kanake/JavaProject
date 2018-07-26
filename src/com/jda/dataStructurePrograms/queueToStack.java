@@ -35,31 +35,35 @@ public static void main(String args[])
 		queue.enque(head);
 		mainStack.push(head);
 		}
-	Node<Object> newnode1=mainStack.pop();
-	Node<Object> newnode=mainStack.pop();
-	while(newnode!=null)
-	{
-		System.out.println("value : "+newnode.data);
-		newnode=newnode.next;
-	}
-	/*for(int i=0;i<5;i++)
+//	Node<Object> newnode1=mainStack.pop();
+//	Node<Object> newnode=mainStack.pop();
+//	while(newnode!=null)
+//	{
+//		System.out.println("value : "+newnode.data);
+//		newnode=newnode.next;
+//	}
+	for(int i=0;i<5;i++)
 	{
 	while(!mainStack.isEmpty())
 	{
 		tempStack.push(mainStack.pop());
 	}
 	Node<Object> temp=tempStack.pop();
-	System.out.println("temp :"+temp.data);
+	//System.out.println("temp :"+temp.data);
 	
 	while(temp!=null)
 	{
-		System.out.println(temp.data);
+		if((int)temp.data==44)
+			System.out.print("             ");
+		else
+		System.out.printf("   %3d    ",temp.data);
 		temp=temp.next;
 	}
+	System.out.println();
 	while(!tempStack.isEmpty())
 	{
 		mainStack.push(tempStack.pop());
 	}
-}*/
+}
 }
 }
