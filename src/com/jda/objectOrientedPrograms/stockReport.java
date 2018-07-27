@@ -34,5 +34,7 @@ public static void main(String args[]) throws FileNotFoundException, IOException
  utility.writeIntoFile("Microsoft");
 	else
 		utility.writeIntoFile("Apple");
+	
+	System.out.println("enter the name to remove :");
 }
 }
