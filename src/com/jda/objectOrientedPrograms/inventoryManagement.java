@@ -13,11 +13,11 @@ public class inventoryManagement {
 	{
 		JSONUtility<Object> utility = new JSONUtility<Object>();
 		Utility utl=new Utility();
-		System.out.println("****Microsoft stocks :******");
-		utility.getStockInfo("Microsoft");
 		
 		System.out.println("*****Apple Stocks*****");
 		utility.getStockInfo("Apple");	
+		System.out.println("****Microsoft stocks :******");
+		utility.getStockInfo("Microsoft");
 		//writing into JSON file
 		System.out.println("***Inventory Management***\n 1. enter entry\n 2. Delete Entry\n Enter your choice ");
 		int choice=utl.InputInteger();
@@ -32,6 +32,7 @@ public class inventoryManagement {
 		 utility.writeIntoFile("Microsoft");
 			else
 				utility.writeIntoFile("Apple");	
+			break;
 		}
 		case 2:
 		{
@@ -42,6 +43,7 @@ public class inventoryManagement {
 				 utility.deleteFromFile("Microsoft");
 					else
 						utility.deleteFromFile("Apple");
+			break;
 		}
 		}
 		

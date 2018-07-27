@@ -146,5 +146,55 @@ public class JSONUtility<Generic> {
 
 			 return jArray;
 	}
+	public void deleteFromFile(String StockName) throws FileNotFoundException, IOException, ParseException
+	{
+		String fileName = "/home/bridgelabz/Documents/stockReport.txt";
+		Object object = readJasonFile(fileName);
+		JSONObject  obj = (JSONObject) object;
+		JSONArray appleStocks = (JSONArray)obj.get("Apple");
+		JSONArray microsoftStocks = (JSONArray)obj.get("Microsoft");
+		if(StockName.equals("Apple")){
+		appleStocks = deleteFromJSONArray(appleStocks);}
+		else{
+		microsoftStocks = deleteFromJSONArray(microsoftStocks);}
+				
+	 HashMap<String,JSONArray> hMap2=new HashMap<>();      //creating 2nd hashmap to store all the entries from file
+	 hMap2.put("Apple",appleStocks);          //storing array of appple and microsoft into hashmap
+	 hMap2.put("Microsoft",microsoftStocks);
+	 
+	 JSONObject newObjectdemo=new JSONObject(hMap2);     //converting that hashmap2 into jasonobject
+	 
+	System.out.println("jason"+newObjectdemo);
+	@SuppressWarnings("resource")
+	FileWriter file = new FileWriter(fileName);     //writing into file
+	 file.write(newObjectdemo.toJSONString());
+	 file.flush();
+	 
+	}
+	@SuppressWarnings("unchecked")
+	public JSONArray deleteFromJSONArray(JSONArray jArray)
+	{
+		//Adding values into hashmap
+				Utility utility = new Utility();
+				System.out.println("Enter entryName :");
+				String entryName = utility.ScanString();
+				JSONArray tempArray=new JSONArray();
+				System.out.println("entruname : "+entryName);
+				   Iterator itr = jArray.iterator();
+				   while(itr.hasNext())
+				   {
+				   	JSONObject object=(JSONObject)itr.next();
+						String check = (String) object.get("Name");
+						System.out.println("check : "+check);
+						if(!check.equals(entryName))
+						{
+							tempArray.add(object);
+						}
+				   }
+			// jArray.add(tempArray);          //adding that object into existing array
+
+			 //return jArray;
+				   return tempArray;
+	}
 
 }
