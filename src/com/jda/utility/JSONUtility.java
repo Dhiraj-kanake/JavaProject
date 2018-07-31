@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.regex.Matcher;
@@ -324,6 +326,115 @@ public class JSONUtility<Generic> {
 			 jArray.add(newObject);          //adding that object into existing array
 //System.out.println(jArray);
 			 return jArray;
+	}
+	@SuppressWarnings("unchecked")
+	public void sellStocks(String stockName) throws FileNotFoundException, IOException, ParseException
+	{
+		String fileName = "/home/bridgelabz/Documents/StockAccount.json";
+		Object object=parser.parse(new FileReader(fileName));
+		JSONObject obj=(JSONObject) object;
+		Utility utility = new Utility();
+		JSONObject company = (JSONObject) obj.get(stockName);
+		Long companyShares = (Long) company.get("ShareAvailable");
+	   JSONArray customersInCompany = (JSONArray)company.get("Customers");
+		Long SharePrice = (Long) company.get("SharePrice");
+		System.out.println("Available Shares : "+company.get("ShareAvailable"));
+		System.out.println("Share Price : "+company.get("SharePrice"));
+		String custFile="/home/bridgelabz/Documents/customers.json";
+		Object custObject=parser.parse(new FileReader(custFile));
+		JSONObject custObj=(JSONObject) custObject;
+		JSONArray custList = (JSONArray) custObj.get("Customers");
+		Iterator itr=custList.iterator();
+		System.out.println("Enter the name of the person who wants to buy");
+		String buyer = utility.ScanString();
+		JSONArray tempList = new JSONArray();
+		while(itr.hasNext())
+		{
+			JSONObject custInfo = (JSONObject) itr.next();
+			System.out.println("cust name : "+custInfo.get("Name"));
+			String custName = (String)custInfo.get("Name");
+			System.out.println("Balence amt : "+custInfo.get("BalenceAmount"));
+			System.out.println("shares  : "+custInfo.get("SharesRequested"));
+			if(buyer.equals(custName))
+					{
+				System.out.println("entry");
+				//person detail
+				Long BalenceAmount=(Long) custInfo.get("BalenceAmount");
+				Long shares = (Long) custInfo.get("SharesRequested");
+				String name =(String)custInfo.get("Name");
+				
+				if( shares <= companyShares && BalenceAmount>= (SharePrice*shares))
+				{
+					System.out.println("again");
+					BalenceAmount=BalenceAmount - (SharePrice * shares);
+					companyShares = companyShares-shares;
+					
+					JSONObject tempObject = new JSONObject();
+					tempObject.put("Name", name);
+					tempObject.put("AvailableBalence", BalenceAmount);
+					tempObject.put("Shares", shares);
+					customersInCompany.add(tempObject);
+					
+					
+					JSONObject updatedEntry=new JSONObject();
+					updatedEntry.put("SharePrice",SharePrice );
+					updatedEntry.put("ShareAvailable",companyShares );
+					updatedEntry.put("Customers", customersInCompany);
+					//System.out.println("entry"+updatedEntry);
+					 HashMap<String,JSONObject> hMap2=new HashMap<>();      //creating 2nd hashmap to store all the entries from file
+					 if(stockName.equals("Apple")){
+						
+						JSONObject company2 = (JSONObject) obj.get("Microsoft");
+						 hMap2.put("Apple", updatedEntry);
+						 hMap2.put("Microsoft",company2);}
+						else{
+							JSONObject company2 = (JSONObject) obj.get("Apple");
+							 hMap2.put("Microsoft", updatedEntry);
+							 hMap2.put("Apple",company2);}
+					 
+					 JSONObject newObjectdemo=new JSONObject(hMap2);     //converting that hashmap2 into jasonobject
+					 
+					System.out.println("jason"+newObjectdemo);
+					
+					@SuppressWarnings("resource")
+					FileWriter file = new FileWriter(fileName);     //writing into file
+					
+					 file.write(newObjectdemo.toJSONString());
+					 //System.out.println("passed"+companyName);
+					 
+					 String transaction = "/home/bridgelabz/Documents/Transaction.json";
+						Object object2=parser.parse(new FileReader(transaction));
+						JSONObject obj2=(JSONObject) object2;
+					 JSONArray trans = (JSONArray)obj2.get("Record");
+					 
+					 JSONObject newTrans = new JSONObject();
+					 newTrans.put("State", "sell");
+					 newTrans.put("Seller", stockName);
+					 newTrans.put("buyer", buyer);
+					 
+					 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+					   LocalDateTime now = LocalDateTime.now();  
+					   System.out.println(dtf.format(now));  
+					 newTrans.put("Time", dtf.format(now));
+					 FileWriter file2= new FileWriter(transaction);
+					 
+					 
+					 trans.add(newTrans);
+					 HashMap<String,JSONArray> hMapForTrans=new HashMap<>();
+					 hMapForTrans.put("record", trans);
+					 
+					 JSONObject newTransition=new JSONObject(hMapForTrans);     //converting that hashmap2 into jasonobject	
+						 file2.write(newTransition.toJSONString());
+					 file2.flush();
+					 file.flush();
+					
+					
+				}
+				break;
+			}
+			
+		}
+		
 	}
 	
 

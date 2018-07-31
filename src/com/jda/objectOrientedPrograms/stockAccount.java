@@ -46,16 +46,17 @@ public class stockAccount {
 		{
 			//utility.getCustomerFile();
 		}
+		break;
 		}
 		case 2:
 		{
-			System.out.println("Enter the Stock name from which you want to delete an entry");
+			System.out.println("Enter the stock name");
 			System.out.println("1. Microsoft \n 2. Apple\n (press 1/2)");
 			int input=utl.InputInteger();
 			if(input==1)
-				 utility.deleteFromFile("Microsoft");
+				 utility.sellStocks("Microsoft");
 					else
-						utility.deleteFromFile("Apple");
+						utility.sellStocks("Apple");
 			break;
 		}
 		}
