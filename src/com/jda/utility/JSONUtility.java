@@ -196,5 +196,135 @@ public class JSONUtility<Generic> {
 			 //return jArray;
 				   return tempArray;
 	}
+	public void getStockInfoForEachCustomer(String value)
+	{
+			try
+			{
+				Object object=parser.parse(new FileReader("/home/bridgelabz/Documents/StockAccount.json"));
+				JSONObject obj=(JSONObject) object;
+				JSONObject company = (JSONObject) obj.get(value);
+				System.out.println("Available Shares : "+company.get("ShareAvailable"));
+				System.out.println("Share Price : "+company.get("SharePrice"));
+				JSONArray jArray = (JSONArray)company.get("Customers");
+				Iterator itr = jArray.iterator();
+				while(itr.hasNext())
+				{
+					JSONObject riceObject=(JSONObject)itr.next();
+					System.out.println("Name : "+riceObject.get("Name"));
+					System.out.println("Available balence : "+riceObject.get("AvailableBalence"));
+					System.out.println("Shares : "+riceObject.get("Shares"));
+					System.out.println();
+				}
+					
+			}catch(Exception e)
+			{e.printStackTrace();}
+	}
+	public void getCustomerFile() throws FileNotFoundException, IOException, ParseException
+	{
+		Object object=parser.parse(new FileReader("/home/bridgelabz/Documents/customers.json"));
+		JSONObject obj=(JSONObject) object;
+		Utility utility = new Utility();
+		JSONArray jArray =(JSONArray) obj.get("Customers");
+		System.out.println("Enter the person Name");
+		String person=utility.ScanString();
+		
+	}
+	@SuppressWarnings("unchecked")
+	public void buyStocks(String companyName,String person) throws FileNotFoundException, IOException, ParseException
+	{
+		String fileName = "/home/bridgelabz/Documents/StockAccount.json";
+		Object object=parser.parse(new FileReader("/home/bridgelabz/Documents/StockAccount.json"));
+		JSONObject obj=(JSONObject) object;
+		Utility utility = new Utility();
+		JSONObject company = (JSONObject) obj.get(companyName);
+		long companyShares = (long) company.get("ShareAvailable");
+		long sharePrice = (long)company.get("SharePrice");
+		JSONArray jArray = (JSONArray)company.get("Customers");
+		Iterator  itr = jArray.iterator();
+		while(itr.hasNext())
+		{
+			JSONObject customerInfo=(JSONObject)itr.next();
+			String name=(String) customerInfo.get("Name");
+			if(name.equals(person))
+			{
+				long availableBalence = (long) customerInfo.get("AvailableBalence");
+				long shares = (long)customerInfo.get("Shares");
+				System.out.println("Enter the number of shares he/she wants to buy!");
+				long requestedShares =utility.InputInteger();
+				if((requestedShares * sharePrice) <= availableBalence)
+				{
+					availableBalence=availableBalence - requestedShares * sharePrice;
+					shares=shares+requestedShares;
+					JSONArray updatedArray = deleteEntry(jArray,person);
+					JSONArray addedEntry = enterEntry(updatedArray,person,availableBalence,shares);
+					companyShares=companyShares-requestedShares;
+					JSONObject updatedEntry=new JSONObject();
+					updatedEntry.put("SharePrice",sharePrice );
+					updatedEntry.put("ShareAvailable",companyShares );
+					updatedEntry.put("Customers", addedEntry);
+					System.out.println("entry"+updatedEntry);
+					 HashMap<String,JSONObject> hMap2=new HashMap<>();      //creating 2nd hashmap to store all the entries from file
+					 if(companyName.equals("Apple")){
+						
+						JSONObject company2 = (JSONObject) obj.get("Microsoft");
+						 hMap2.put("Apple", updatedEntry);
+						 hMap2.put("Microsoft",company2);}
+						else{
+							JSONObject company2 = (JSONObject) obj.get("Apple");
+							 hMap2.put("Microsoft", updatedEntry);
+							 hMap2.put("Apple",company2);}
+					 
+					 JSONObject newObjectdemo=new JSONObject(hMap2);     //converting that hashmap2 into jasonobject
+					 
+					System.out.println("jason"+newObjectdemo);
+					
+					@SuppressWarnings("resource")
+					FileWriter file = new FileWriter(fileName);     //writing into file
+					 file.write(newObjectdemo.toJSONString());
+					 //System.out.println("passed"+companyName);
+					 file.flush();
+					
+					
+					break;
+				}
+			}
+		}
+		
+	}
+	public JSONArray deleteEntry(JSONArray jArray,String person)
+	{
+		//Adding values into hashmap
+				Utility utility = new Utility();
+				JSONArray tempArray=new JSONArray();
+				   Iterator itr = jArray.iterator();
+				   while(itr.hasNext())
+				   {
+				   	JSONObject object=(JSONObject)itr.next();
+						String check = (String) object.get("Name");
+						if(!check.equals(person))
+						{
+							tempArray.add(object);
+						}
+				   }
+			// jArray.add(tempArray);          //adding that object into existing array
+
+			 //return jArray;
+				   //System.out.println(tempArray);
+				   return tempArray;
+	}public JSONArray enterEntry(JSONArray jArray,String name,Long balence,Long shares)
+	{
+		//Adding values into hashmap
+				Utility utility = new Utility();
+				HashMap<String,Generic> hMap = new HashMap<String,Generic>(); 
+				hMap.put("Name", (Generic) name);         //storing elements into hashmap
+				hMap.put("AvailableBalence", (Generic) balence);
+			hMap.put("Shares", (Generic) shares);
+		   
+				JSONObject newObject=new JSONObject(hMap);     // converting hashmap to jasonobject
+			 jArray.add(newObject);          //adding that object into existing array
+//System.out.println(jArray);
+			 return jArray;
+	}
+	
 
 }
