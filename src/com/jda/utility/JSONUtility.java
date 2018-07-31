@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -369,6 +371,18 @@ public class JSONUtility<Generic> {
 					BalenceAmount=BalenceAmount - (SharePrice * shares);
 					companyShares = companyShares-shares;
 					
+					Iterator custItr=customersInCompany.iterator();
+					while(custItr.hasNext())
+					{
+						JSONObject temp=(JSONObject) custItr.next();
+						String duplicateName=(String)temp.get("Name");
+						if(buyer.equals(duplicateName))
+						{
+							shares = shares+ (Long) temp.get("Shares");
+							customersInCompany =deleteEntry(customersInCompany,buyer);
+						}
+					}
+					
 					JSONObject tempObject = new JSONObject();
 					tempObject.put("Name", name);
 					tempObject.put("AvailableBalence", BalenceAmount);
@@ -401,34 +415,34 @@ public class JSONUtility<Generic> {
 					
 					 file.write(newObjectdemo.toJSONString());
 					 //System.out.println("passed"+companyName);
-					 
+					 file.flush();
 					 String transaction = "/home/bridgelabz/Documents/Transaction.json";
 						Object object2=parser.parse(new FileReader(transaction));
 						JSONObject obj2=(JSONObject) object2;
-					 JSONArray trans = (JSONArray)obj2.get("Record");
+					 JSONObject record = (JSONObject)obj2.get("record");
+					 JSONArray trans=(JSONArray)record.get("trans");
+					 System.out.println("trans : "+trans );
 					 
 					 JSONObject newTrans = new JSONObject();
 					 newTrans.put("State", "sell");
 					 newTrans.put("Seller", stockName);
 					 newTrans.put("buyer", buyer);
 					 
-					 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
-					   LocalDateTime now = LocalDateTime.now();  
-					   System.out.println(dtf.format(now));  
-					 newTrans.put("Time", dtf.format(now));
-					 FileWriter file2= new FileWriter(transaction);
-					 
-					 
+				 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");  
+				LocalDateTime now = LocalDateTime.now();  
+					  // System.out.println(dtf.format(now));  
+					 newTrans.put("Time",dtf.format(now));
+					 @SuppressWarnings("resource")
+					FileWriter file2= new FileWriter(transaction);
 					 trans.add(newTrans);
-					 HashMap<String,JSONArray> hMapForTrans=new HashMap<>();
-					 hMapForTrans.put("record", trans);
+					 record.put("trans",trans );
+					 HashMap<String,JSONObject> hMapForTrans=new HashMap<>();
+					 hMapForTrans.put("record", record);
 					 
 					 JSONObject newTransition=new JSONObject(hMapForTrans);     //converting that hashmap2 into jasonobject	
 						 file2.write(newTransition.toJSONString());
 					 file2.flush();
-					 file.flush();
-					
-					
+				
 				}
 				break;
 			}
