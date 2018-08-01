@@ -407,7 +407,7 @@ public class JSONUtility<Generic> {
 					@SuppressWarnings("resource")
 					FileWriter file = new FileWriter(fileName);     //writing into file
 					 file.write(newObjectdemo.toJSONString());
-					 file.flush();	
+					 file.flush();
 					break;
 				}
 			}
