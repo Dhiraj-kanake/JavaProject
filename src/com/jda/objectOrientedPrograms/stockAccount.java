@@ -44,20 +44,36 @@ public class stockAccount {
 		}
 		else
 		{
-			//utility.getCustomerFile();
+			utility.getCustomerFile();
 		}
 		break;
 		}
 		case 2:
 		{
-			System.out.println("Enter the stock name");
+			System.out.println("Enter the stock name");      
 			System.out.println("1. Microsoft \n 2. Apple\n (press 1/2)");
 			int input=utl.InputInteger();
+			System.out.println("Who wants to sell? \n 1. person 2. company (press 1/2)");
+			int seller=utl.InputInteger();
+			if(seller == 2)
+			{
 			if(input==1)
 				 utility.sellStocks("Microsoft");
 					else
 						utility.sellStocks("Apple");
+			}
+			else
+			{
+				if(input==1)
+					 utility.sellStocksByPerson("Microsoft");
+						else
+							utility.sellStocksByPerson("Apple");
+			}
 			break;
+		}
+		case 3:
+		{
+			utility.printReport();
 		}
 		}
 		

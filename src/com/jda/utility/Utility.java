@@ -78,7 +78,10 @@ public class Utility {
 	{
 		return scanner.nextInt();
 	}
-	
+	public Long InputLong()
+	{
+		return scanner.nextLong();
+	}
 	
 	//  To take String as an input
 	

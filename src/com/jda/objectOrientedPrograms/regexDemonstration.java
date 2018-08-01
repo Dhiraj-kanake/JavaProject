@@ -2,6 +2,8 @@ package com.jda.objectOrientedPrograms;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -30,7 +32,12 @@ public static void main(String args[]) throws FileNotFoundException, IOException
 	fullNameToReplace=nameToReplace + " "+fullNameToReplace;
 	System.out.println("Enter number : ");
 	String numberToReplace = utl.ScanString();
-	String dateToReplace = "26/07/2018";
+	
+	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");  
+	LocalDateTime now = LocalDateTime.now();  
+		  
+		 //newTrans.put("Time",dtf.format(now));
+	String dateToReplace = dtf.format(now);
 	
 	message=utility.replace(message, name,nameToReplace );
 	message=utility.replace(message, fullName, fullNameToReplace);
